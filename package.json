@@ -1,0 +1,61 @@
+{
+	"name": "venue-backend",
+	"version": "1.0.0",
+	"description": "Backend Repo for Venue Management App",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon --exec babel-node src/index.js",
+		"lint": "eslint --ignore-path .gitignore src/ --fix",
+		"prettier": "prettier --single-quote --trailing-comma es5 --print-width 85 --write --no-bracket-spacing src/**/*.js",
+		"build": "npm run prebuild && babel src --out-dir build",
+		"prebuild": "npm run lint && npm run clean && npm run prettier",
+		"clean": "rm -rf build/*"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/timzprof/Venue-BackEnd.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/timzprof/Venue-BackEnd/issues"
+	},
+	"homepage": "https://github.com/timzprof/Venue-BackEnd#readme",
+	"dependencies": {
+		"@babel/cli": "^7.6.2",
+		"@babel/core": "^7.6.2",
+		"@babel/polyfill": "^7.6.0",
+		"@babel/preset-env": "^7.6.2",
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.19.0",
+		"compression": "^1.7.4",
+		"date-fns": "^2.2.1",
+		"dotenv": "^8.1.0",
+		"express": "^4.17.1",
+		"helmet": "^3.21.1",
+		"jsonwebtoken": "^8.5.1",
+		"morgan": "^1.9.1",
+		"pg": "^7.12.1",
+		"pg-hstore": "^2.3.3",
+		"sequelize": "^5.19.0",
+		"trim-request": "^1.0.6"
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-env"
+		]
+	},
+	"devDependencies": {
+		"@babel/node": "^7.6.2",
+		"eslint": "^6.4.0",
+		"eslint-config-airbnb": "^18.0.1",
+		"eslint-config-prettier": "^6.3.0",
+		"eslint-plugin-promise": "^4.2.1",
+		"nodemon": "^1.19.2",
+		"prettier": "^1.18.2"
+	},
+	"engines": {
+		"node": "10"
+	}
+}
