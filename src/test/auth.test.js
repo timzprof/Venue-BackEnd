@@ -6,24 +6,24 @@ const {assert, expect, use} = chai;
 const URL_PREFIX = "/api/v1";
 const {server, userModel, bcrypt} = setup();
 
-server();
-
 use(chaiHttp);
 
 before(done => {
-	userModel
-		.create({
-			username: "Tester",
-			type: "admin",
-			email: "test@gmail.com",
-			password: bcrypt.hashSync("tester7", 10)
-		})
-		.then(() => {
-			done();
-		})
-		.catch(err =>
-			console.log("Auth Test - Creating Fake user failed", err.message || err)
-		);
+	server.on("DBConnected", () => {
+		userModel
+			.create({
+				username: "Tester",
+				type: "admin",
+				email: "test@gmail.com",
+				password: bcrypt.hashSync("tester7", 10)
+			})
+			.then(() => {
+				done();
+			})
+			.catch(err =>
+				console.log("Auth Test - Creating Fake user failed", err.message || err)
+			);
+	});
 });
 
 describe("Auth Tests", () => {

@@ -1,4 +1,3 @@
-import "@babel/polyfill";
 import fs from "fs";
 import path, {dirname} from "path";
 import express from "express";
@@ -100,7 +99,9 @@ app.use((error, req, res, next) => {
 db.sync()
 	.then(() => {
 		console.log("DB Connection has been established");
-		app.listen(PORT);
+		app.listen(PORT, null, null, () => {
+			app.emit("DBConnected");
+		});
 		console.log("App Running on PORT", PORT);
 	})
 	.catch(err => {
