@@ -6,7 +6,7 @@ const {assert, expect, use} = chai;
 const URL_PREFIX = "/api/v1";
 const {server, userModel, bcrypt} = setup();
 
-const serverInstance = server();
+server();
 
 use(chaiHttp);
 
@@ -29,7 +29,7 @@ before(done => {
 describe("Auth Tests", () => {
 	it("Logs Admin In", done => {
 		chai
-			.request(serverInstance)
+			.request(server)
 			.post(`${URL_PREFIX}/auth/login`)
 			.send({
 				email: "test@gmail.com",
