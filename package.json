@@ -33,13 +33,13 @@
 		"date-fns": "^2.2.1",
 		"dotenv": "^8.1.0",
 		"express": "^4.17.1",
+		"express-validator": "^6.2.0",
 		"helmet": "^3.21.1",
 		"jsonwebtoken": "^8.5.1",
 		"morgan": "^1.9.1",
 		"pg": "^7.12.1",
 		"pg-hstore": "^2.3.3",
-		"sequelize": "^5.19.0",
-		"trim-request": "^1.0.6"
+		"sequelize": "^5.19.0"
 	},
 	"babel": {
 		"presets": [

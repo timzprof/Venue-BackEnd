@@ -3,12 +3,16 @@ import fs from "fs";
 import path, {dirname} from "path";
 import express from "express";
 import bodyParser from "body-parser";
+import jwt from "jsonwebtoken";
 import helmet from "helmet";
+import bcrypt from "bcryptjs";
 import compression from "compression";
 import logger from "morgan";
 import {config} from "dotenv";
 import Sequelize from "sequelize";
 import initializeDatabase from "./util/db";
+import {body} from "express-validator";
+import validator from "./util/validator";
 
 //Models
 import UserModel from "./models/user";
@@ -16,9 +20,12 @@ import ResourceModel from "./models/resource";
 import VenueModel from "./models/venue";
 import BookingModel from "./models/booking";
 
+//Routers
+import AuthRouter from "./routes/auth";
+
 config();
 const URL_PREFIX = "/api/v1";
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 700;
 
 // Initialize Database
 const db = initializeDatabase({Sequelize});
@@ -59,6 +66,18 @@ app.use((req, res, next) => {
 	next();
 });
 
+app.use(
+	`${URL_PREFIX}/auth`,
+	AuthRouter({
+		express,
+		bcrypt,
+		bodyValidator: body,
+		validator,
+		userModel,
+		jwt
+	})
+);
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
 	res.status(404).json({
@@ -67,6 +86,14 @@ app.use((req, res, next) => {
 		message: "This route doesn't exist for you!"
 	});
 	next();
+});
+
+app.use((error, req, res, next) => {
+	console.log(error);
+	return res.status(error.statusCode).json({
+		message: "Something went wrong",
+		errorMessage: error.message
+	});
 });
 
 // Connect to Database
