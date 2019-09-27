@@ -22,7 +22,7 @@ before(done => {
 			done();
 		})
 		.catch(err =>
-			console.log("Auth Test - Creating Fake user failed", err.message)
+			console.log("Auth Test - Creating Fake user failed", err.message || err)
 		);
 });
 
