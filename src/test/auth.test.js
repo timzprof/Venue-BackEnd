@@ -19,7 +19,9 @@ before(done => {
 		.then(() => {
 			done();
 		})
-		.catch(err => console.log("Auth Test - Creating Fake user failed"));
+		.catch(err =>
+			console.log("Auth Test - Creating Fake user failed", err.message)
+		);
 });
 
 describe("Auth Tests", () => {
