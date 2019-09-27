@@ -9,7 +9,8 @@
 		"prettier": "prettier --single-quote --trailing-comma es5 --print-width 85 --write --no-bracket-spacing src/**/*.js",
 		"build": "npm run prebuild && babel src --out-dir build",
 		"prebuild": "npm run lint && npm run clean && npm run prettier",
-		"clean": "rm -rf build/*"
+		"clean": "rm -rf build/*",
+		"test": "mocha ./src/test -r esm --recursive -t 5000 --exit"
 	},
 	"repository": {
 		"type": "git",
@@ -48,10 +49,14 @@
 	},
 	"devDependencies": {
 		"@babel/node": "^7.6.2",
+		"chai": "^4.2.0",
+		"chai-http": "^4.3.0",
 		"eslint": "^6.4.0",
 		"eslint-config-airbnb": "^18.0.1",
 		"eslint-config-prettier": "^6.3.0",
 		"eslint-plugin-promise": "^4.2.1",
+		"esm": "^3.2.25",
+		"mocha": "^6.2.0",
 		"nodemon": "^1.19.2",
 		"prettier": "^1.18.2"
 	},

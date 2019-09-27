@@ -107,4 +107,13 @@ db.sync()
 		console.error("Failed To connect to Database", err);
 	});
 
-export default app;
+export default () => {
+	return {
+		server: app,
+		userModel,
+		bookingModel,
+		venueModel,
+		resourceModel,
+		bcrypt
+	};
+};
