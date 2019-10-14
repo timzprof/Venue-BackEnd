@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 const verifyToken = async (req, res, next) => {
 	let token = req.headers["x-access-token"] || req.headers.authorization;
 
@@ -22,4 +24,14 @@ const verifyToken = async (req, res, next) => {
 	}
 };
 
-module.exports = {verifyToken};
+const verifyAdmin = (req, res, next) => {
+	if (req.user.type !== "admin") {
+		return res.status(401).json({
+			status: "error",
+			message: "Unauthorized"
+		});
+	}
+	next();
+};
+
+module.exports = {verifyToken, verifyAdmin};

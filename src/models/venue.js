@@ -1,4 +1,4 @@
-export default ({Sequelize, db}) => {
+export default ({Sequelize, db, User}) => {
 	const Venue = db.define("venue", {
 		id: {
 			type: Sequelize.INTEGER,
@@ -13,19 +13,20 @@ export default ({Sequelize, db}) => {
 		address: {
 			type: Sequelize.STRING,
 			allowNull: false
-        },
-        capacity: {
-            type: Sequelize.INTEGER,
-            allowNull: false
-        },
+		},
+		capacity: {
+			type: Sequelize.INTEGER,
+			allowNull: false
+		},
 		imageUrl: {
 			type: Sequelize.STRING,
 			allowNull: false
-		},
-		resources: {
-			type: Sequelize.STRING
 		}
 	});
-
+	Venue.belongsTo(User, {
+		as: "admin",
+		constraints: true,
+		onDelete: "CASCADE"
+	});
 	return Venue;
 };

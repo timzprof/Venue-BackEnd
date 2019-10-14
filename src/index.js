@@ -1,5 +1,5 @@
 import fs from "fs";
-import path, {dirname} from "path";
+import path from "path";
 import express from "express";
 import bodyParser from "body-parser";
 import jwt from "jsonwebtoken";
@@ -12,6 +12,7 @@ import Sequelize from "sequelize";
 import initializeDatabase from "./util/db";
 import {body} from "express-validator";
 import validator from "./util/validator";
+import listEndpoints from "express-list-endpoints";
 
 //Models
 import UserModel from "./models/user";
@@ -21,6 +22,7 @@ import BookingModel from "./models/booking";
 
 //Routers
 import AuthRouter from "./routes/auth";
+import VenueRouter from "./routes/venue";
 
 config();
 const URL_PREFIX = "/api/v1";
@@ -31,7 +33,7 @@ const db = initializeDatabase({Sequelize});
 
 // Initialize Models
 const userModel = UserModel({Sequelize, db});
-const venueModel = VenueModel({Sequelize, db});
+const venueModel = VenueModel({Sequelize, db, User: userModel});
 const resourceModel = ResourceModel({Sequelize, db, Venue: venueModel});
 const bookingModel = BookingModel({Sequelize, db, User: userModel});
 
@@ -65,6 +67,17 @@ app.use((req, res, next) => {
 	next();
 });
 
+// app.use(async (req, res, next) => {
+// 	const pass = await bcrypt.hash("bakugan", 10);
+// 	await userModel.create({
+// 		username: "Prof.T",
+// 		type: "admin",
+// 		email: "tim@gmail.com",
+// 		password: pass
+// 	});
+// 	next();
+// });
+
 app.use(
 	`${URL_PREFIX}/auth`,
 	AuthRouter({
@@ -75,6 +88,21 @@ app.use(
 		userModel,
 		jwt
 	})
+);
+
+app.use(
+	`${URL_PREFIX}/venue`,
+	VenueRouter({
+		express,
+		venueModel,
+		bodyValidator: body,
+		resourceModel,
+		validator
+	})
+);
+
+app.use(`${URL_PREFIX}/endpoints`, (req, res) =>
+	res.status(200).json(listEndpoints(app))
 );
 
 // catch 404 and forward to error handler
@@ -88,11 +116,16 @@ app.use((req, res, next) => {
 });
 
 app.use((error, req, res, next) => {
-	console.log(error);
-	return res.status(error.statusCode).json({
+	let responseObj = {
+		status: "error",
 		message: "Something went wrong",
 		errorMessage: error.message
-	});
+	};
+	if (process.env.NODE_ENV === "development") {
+		responseObj.errorStack = error.stack;
+		responseObj.errors = error.errors || [];
+	}
+	return res.status(error.statusCode).json(responseObj);
 });
 
 // Connect to Database

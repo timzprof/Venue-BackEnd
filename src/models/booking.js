@@ -31,7 +31,8 @@ export default ({Sequelize, db, User}) => {
 			allowNull: false
 		},
 		venueId: {
-			type: Sequelize.STRING
+			type: Sequelize.INTEGER,
+			allowNull: false
 		}
 	});
 

@@ -16,7 +16,11 @@ export default ({
 		[
 			bodyValidator("email")
 				.isEmail()
-				.withMessage("Please enter a valid email"),
+				.withMessage("Please enter a valid email")
+				.normalizeEmail({
+					gmail_remove_subaddress: false,
+					gmail_remove_dots: false
+				}),
 			bodyValidator("password")
 				.trim()
 				.isLength({min: 5})

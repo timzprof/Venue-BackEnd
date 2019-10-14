@@ -1,5 +1,5 @@
 export default ({jwt, userModel, bcrypt}) => {
-	const login = async (req, res) => {
+	const login = async (req, res, next) => {
 		try {
 			const {email, password} = req.body;
 			const user = await userModel.findOne({where: {email}});
@@ -21,6 +21,7 @@ export default ({jwt, userModel, bcrypt}) => {
 				email: user.email,
 				type: user.type
 			};
+
 			const token = jwt.sign({user: safeUser}, process.env.JWT_SECRET, {
 				expiresIn: "24h"
 			});
