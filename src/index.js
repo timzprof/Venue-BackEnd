@@ -41,13 +41,13 @@ const app = express();
 
 app.use(helmet());
 app.use(compression());
-app.use(
-  logger('common', {
-    stream: fs.createWriteStream(path.resolve(__dirname, './logs/access.log'), {
-      flags: 'a',
-    }),
-  }),
-);
+// app.use(
+//   logger('common', {
+//     stream: fs.createWriteStream(path.resolve(__dirname, './logs/access.log'), {
+//       flags: 'a',
+//     }),
+//   }),
+// );
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
