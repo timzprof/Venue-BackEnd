@@ -67,16 +67,19 @@ app.use((req, res, next) => {
 	next();
 });
 
-// app.use(async (req, res, next) => {
-// 	const pass = await bcrypt.hash("bakugan", 10);
-// 	await userModel.create({
-// 		username: "Prof.T",
-// 		type: "admin",
-// 		email: "tim@gmail.com",
-// 		password: pass
-// 	});
-// 	next();
-// });
+app.use(async (req, res, next) => {
+	const user = await userModel.findOne({where: {email: "test@gmail.com"}});
+	if (!user) {
+		const pass = await bcrypt.hash("testpass", 10);
+		await userModel.create({
+			username: "Tester",
+			type: "admin",
+			email: "test@gmail.com",
+			password: pass
+		});
+	}
+	next();
+});
 
 app.use(
 	`${URL_PREFIX}/auth`,
