@@ -15,8 +15,8 @@ export default ({
 
   venueRouter.post(
     '/',
-    verifyToken,
-    verifyAdmin,
+    auth.verifyToken,
+    auth.verifyAdmin,
     [
       bodyValidator('title')
         .trim()
