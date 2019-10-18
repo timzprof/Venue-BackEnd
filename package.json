@@ -8,7 +8,7 @@
 		"dev": "nodemon --exec babel-node src/index.js",
 		"lint": "eslint --ignore-path .gitignore src/ --fix",
 		"prettier": "prettier --single-quote --trailing-comma es5 --print-width 85 --write --no-bracket-spacing src/**/*.js",
-		"build": "babel src --out-dir build && npm run create-logs",
+		"build": "babel src --out-dir build",
 		"prebuild": "npm run lint && npm run clean && npm run prettier",
 		"clean": "rm -rf build/*",
 		"test": "mocha ./src/test -r esm --recursive -t 5000 --exit",
