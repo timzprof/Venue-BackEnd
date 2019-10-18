@@ -119,7 +119,25 @@ export default ({ venueModel, resourceModel }) => {
       return next(error);
     }
   };
+  const getSingleVenue = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const venue = await venueModel.findOne({ where: { id } });
+      return res.status(200).json({
+        status: 'success',
+        message: 'Venue Retrived',
+        data: venue,
+      });
+    } catch (error) {
+      if (!error.statusCode) error.statusCode = 500;
+      return next(error);
+    }
+  };
   return {
-    getVenues, createVenue, deleteVenue, updateVenue,
+    getVenues,
+    createVenue,
+    deleteVenue,
+	updateVenue,
+	getSingleVenue,
   };
 };

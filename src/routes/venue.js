@@ -13,6 +13,8 @@ export default ({
 
   venueRouter.get('/', venueController.getVenues);
 
+  venueRouter.get('/:id', venueController.getSingleVenue);
+
   venueRouter.post(
     '/',
     auth.verifyToken,
