@@ -1,10 +1,23 @@
+/**
+ * Venue Controller Initialization Function
+ * @param  {Object} RouterParams - Router Parameters
+ * @param  {Object} RouterParams.venueModel - Venue Model
+ * @param  {Object} RouterParams.resourceModel - Resource Model
+ * @returns {Object} ControllerObject
+ */
 export default ({ venueModel, resourceModel }) => {
+  /**
+	 * Get All Venues
+	 * @param  {Object} req
+	 * @param  {Object} res
+	 * @param  {Function} next
+	 */
   const getVenues = async (req, res, next) => {
     try {
       const venues = await venueModel.findAll();
       return res.status(200).json({
         status: 'success',
-        message: 'Venues Retrived',
+        message: 'Venues Retrieved',
         data: venues,
       });
     } catch (error) {
@@ -12,6 +25,12 @@ export default ({ venueModel, resourceModel }) => {
       return next(error);
     }
   };
+  /**
+	 * Create a New Venue
+	 * @param  {Object} req
+	 * @param  {Object} res
+	 * @param  {Function} next
+	 */
   const createVenue = async (req, res, next) => {
     try {
       const {
@@ -46,7 +65,12 @@ export default ({ venueModel, resourceModel }) => {
       return next(error);
     }
   };
-
+  /**
+	 * Delete A Venue
+	 * @param  {Object} req
+	 * @param  {Object} res
+	 * @param  {Function} next
+	 */
   const deleteVenue = async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -73,7 +97,12 @@ export default ({ venueModel, resourceModel }) => {
       return next(error);
     }
   };
-
+  /**
+	 * Update a Venues Details
+	 * @param  {Object} req
+	 * @param  {Object} res
+	 * @param  {Function} next
+	 */
   const updateVenue = async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -119,6 +148,12 @@ export default ({ venueModel, resourceModel }) => {
       return next(error);
     }
   };
+  /**
+	 * Get A Single Venue
+	 * @param  {Object} req
+	 * @param  {Object} res
+	 * @param  {Function} next
+	 */
   const getSingleVenue = async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -137,7 +172,7 @@ export default ({ venueModel, resourceModel }) => {
     getVenues,
     createVenue,
     deleteVenue,
-	updateVenue,
-	getSingleVenue,
+    updateVenue,
+    getSingleVenue,
   };
 };

@@ -3,8 +3,8 @@
 		// Required for certain syntax usages
 		"ecmaVersion": 2018
 	},
-	"plugins": ["promise"],
-	"extends": "airbnb-base",
+	"plugins": ["promise", "prettier"],
+	"extends": ["airbnb-base", "prettier"],
 	"rules": {
 		// Removed rule "disallow the use of console" from recommended eslint rules
 		"no-console": "off",

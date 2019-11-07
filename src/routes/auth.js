@@ -1,5 +1,16 @@
 import AuthController from '../controllers/auth';
 
+/**
+ * Auth Router Initialization Function
+ * @param  {Object} RouterParams - Router Parameters
+ * @param  {Object} RouterParams.express - Express
+ * @param  {Object} RouterParams.jwt - Jsonwebtoken
+ * @param  {Object} RouterParams.bcrypt - bcryptjs
+ * @param  {Object} RouterParams.userModel - User Model
+ * @param  {Function} RouterParams.bodyValidator - Exress Validator(body)
+ * @param  {Object} RouterParams.validator - Custom Validator
+ * @returns {Object} ExpressRouter
+ */
 export default ({
   express,
   jwt,

@@ -1,6 +1,16 @@
 import VenueController from '../controllers/venue';
 import auth from '../util/auth';
 
+/**
+ * Venue Router Initialization Function
+ * @param  {Object} RouterParams - Router Parameters
+ * @param  {Object} RouterParams.express - Express
+ * @param  {Object} RouterParams.venueModel - Venue Model
+ * @param  {Function} RouterParams.bodyValidator - Express Validator(body)
+ * @param  {Object} RouterParams.validator - Custom Validator
+ * @param  {Object} RouterParams.resourceModel - Resource Model
+ * @returns {Object} ExpressRouter
+ */
 export default ({
   express,
   venueModel,
@@ -46,14 +56,10 @@ export default ({
     auth.verifyToken,
     auth.verifyAdmin,
     [
-      bodyValidator('title')
-        .trim(),
-      bodyValidator('address')
-        .trim(),
-      bodyValidator('capacity')
-        .trim(),
-      bodyValidator('resources')
-        .isArray(),
+      bodyValidator('title').trim(),
+      bodyValidator('address').trim(),
+      bodyValidator('capacity').trim(),
+      bodyValidator('resources').isArray(),
     ],
     venueController.updateVenue,
   );
