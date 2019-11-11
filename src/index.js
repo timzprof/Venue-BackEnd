@@ -6,14 +6,15 @@ import jwt from "jsonwebtoken";
 import helmet from "helmet";
 import bcrypt from "bcryptjs";
 import compression from "compression";
-import {v2 as cloudinary} from "cloudinary";
+import fileUpload from "express-fileupload";
 import logger from "morgan";
 import {config} from "dotenv";
 import Sequelize from "sequelize";
-import {body} from "express-validator";
+import {check} from "express-validator";
 import listEndpoints from "express-list-endpoints";
 import initializeDatabase from "./util/db";
 import validator from "./util/validator";
+import cloudinaryUtility from "./util/cloudinary";
 
 // Models
 import UserModel from "./models/user";
@@ -45,20 +46,9 @@ const bookingModel = BookingModel({
 });
 
 // Cloudinary Config
-const {CLOUDINARY_URL} = process.env;
-const clouName = CLOUDINARY_URL.split("@")[1];
-const apiKey = CLOUDINARY_URL.slice(13, CLOUDINARY_URL.length).split(":")[0];
-const apiSecret = CLOUDINARY_URL.slice(13, CLOUDINARY_URL.length)
-	.split(":")[1]
-	.split("@")[0];
-cloudinary.config({
-	clouName,
-	apiKey,
-	apiSecret
-});
+cloudinaryUtility.init();
 
 const app = express();
-
 app.use(helmet());
 app.use(compression());
 app.use(
@@ -71,6 +61,11 @@ app.use(
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(
+	fileUpload({
+		limits: {fileSize: 5 * 1024 * 1024}
+	})
+);
 
 // Enable CORS
 app.use((req, res, next) => {
@@ -107,7 +102,7 @@ app.use(
 	AuthRouter({
 		express,
 		bcrypt,
-		bodyValidator: body,
+		expressValidator: check,
 		validator,
 		userModel,
 		jwt
@@ -119,7 +114,7 @@ app.use(
 	VenueRouter({
 		express,
 		venueModel,
-		bodyValidator: body,
+		expressValidator: check,
 		resourceModel,
 		validator
 	})
@@ -130,7 +125,7 @@ app.use(
 	BookingRouter({
 		express,
 		bcrypt,
-		bodyValidator: body,
+		expressValidator: check,
 		validator,
 		userModel,
 		bookingModel

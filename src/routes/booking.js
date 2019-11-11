@@ -7,7 +7,7 @@ import auth from "../util/auth";
  * @param  {Object} RouterParams.express - Express
  * @param {Object} RouterParams.bcrypt - Bcryptjs
  * @param  {Object} RouterParams.userModel - User Model
- * @param  {Function} RouterParams.bodyValidator - Express Validator(body)
+ * @param  {Function} RouterParams.expressValidator - Express Validator(check)
  * @param  {Object} RouterParams.validator - Custom Validator
  * @param  {Object} RouterParams.bookingeModel - Resource Model
  * @returns {Object} ExpressRouter
@@ -15,7 +15,7 @@ import auth from "../util/auth";
 export default ({
 	express,
 	bcrypt,
-	bodyValidator,
+	expressValidator,
 	validator,
 	userModel,
 	bookingModel
@@ -37,35 +37,36 @@ export default ({
 	bookingRouter.post(
 		"/",
 		[
-			bodyValidator("eventTitle")
+			expressValidator("eventTitle")
 				.trim()
 				.not()
 				.isEmpty(),
-			bodyValidator("eventDescription")
+			expressValidator("eventDescription")
 				.trim()
 				.not()
 				.isEmpty(),
-			bodyValidator("date")
+			expressValidator("date")
 				.trim()
 				.not()
 				.isEmpty(),
-			bodyValidator("timeframe")
+			expressValidator("timeframe")
 				.isArray()
 				.not()
 				.isEmpty(),
-			bodyValidator("contactName")
+			expressValidator("contactName")
 				.trim()
 				.not()
 				.isEmpty(),
-			bodyValidator("contactEmail")
+			expressValidator("contactEmail")
+				.trim()
+				.isEmail()
+				.not()
+				.isEmpty(),
+			expressValidator("contactPhone")
 				.trim()
 				.not()
 				.isEmpty(),
-			bodyValidator("contactPhone")
-				.trim()
-				.not()
-				.isEmpty(),
-			bodyValidator("venueId")
+			expressValidator("venueId")
 				.trim()
 				.not()
 				.isEmpty()

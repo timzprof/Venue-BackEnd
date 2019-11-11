@@ -1,4 +1,4 @@
-import AuthController from '../controllers/auth';
+import AuthController from "../controllers/auth";
 
 /**
  * Auth Router Initialization Function
@@ -7,38 +7,38 @@ import AuthController from '../controllers/auth';
  * @param  {Object} RouterParams.jwt - Jsonwebtoken
  * @param  {Object} RouterParams.bcrypt - bcryptjs
  * @param  {Object} RouterParams.userModel - User Model
- * @param  {Function} RouterParams.bodyValidator - Exress Validator(body)
+ * @param  {Function} RouterParams.expressValidator - Exress Validator(check)
  * @param  {Object} RouterParams.validator - Custom Validator
  * @returns {Object} ExpressRouter
  */
 export default ({
-  express,
-  jwt,
-  bcrypt,
-  userModel,
-  bodyValidator,
-  validator,
+	express,
+	jwt,
+	bcrypt,
+	userModel,
+	expressValidator,
+	validator
 }) => {
-  const authController = AuthController({ jwt, bcrypt, userModel });
-  const authRouter = express.Router();
+	const authController = AuthController({jwt, bcrypt, userModel});
+	const authRouter = express.Router();
 
-  authRouter.post(
-    '/login',
-    [
-      bodyValidator('email')
-        .isEmail()
-        .withMessage('Please enter a valid email')
-        .normalizeEmail({
-          gmail_remove_subaddress: false,
-          gmail_remove_dots: false,
-        }),
-      bodyValidator('password')
-        .trim()
-        .isLength({ min: 5 }),
-    ],
-    validator,
-    authController.login,
-  );
+	authRouter.post(
+		"/login",
+		[
+			expressValidator("email")
+				.isEmail()
+				.withMessage("Please enter a valid email")
+				.normalizeEmail({
+					gmail_remove_subaddress: false,
+					gmail_remove_dots: false
+				}),
+			expressValidator("password")
+				.trim()
+				.isLength({min: 5})
+		],
+		validator,
+		authController.login
+	);
 
-  return authRouter;
+	return authRouter;
 };
