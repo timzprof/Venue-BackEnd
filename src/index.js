@@ -172,11 +172,11 @@ db.sync()
 		console.error("Failed To connect to Database", err);
 	});
 
-export default () => ({
+module.exports = {
 	server: app,
 	userModel,
 	bookingModel,
 	venueModel,
 	resourceModel,
 	bcrypt
-});
+};

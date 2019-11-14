@@ -11,7 +11,7 @@
 		"build": "babel src --out-dir build",
 		"prebuild": "npm run lint && npm run clean && npm run prettier",
 		"clean": "rm -rf build/*",
-		"test": "mocha ./src/test -r esm --recursive -t 5000 --exit",
+		"test": "mocha -r @babel/register --recursive -t 10000 --exit",
 		"create-logs": "mkdir ./src/logs && cat ./src/logs/access.log"
 	},
 	"repository": {
@@ -39,9 +39,11 @@
 		"express-fileupload": "^1.1.6-alpha.6",
 		"express-list-endpoints": "^4.0.1",
 		"express-validator": "^6.2.0",
+		"googleapis": "^45.0.0",
 		"helmet": "^3.21.1",
 		"jsonwebtoken": "^8.5.1",
 		"morgan": "^1.9.1",
+		"nodemailer": "^6.3.1",
 		"pg": "^7.12.1",
 		"pg-hstore": "^2.3.3",
 		"pm2": "^4.1.2",
@@ -61,6 +63,7 @@
 	},
 	"devDependencies": {
 		"@babel/node": "^7.6.2",
+		"@babel/register": "^7.7.0",
 		"chai": "^4.2.0",
 		"chai-http": "^4.3.0",
 		"eslint": "^6.4.0",
@@ -70,7 +73,8 @@
 		"eslint-plugin-prettier": "^3.1.1",
 		"eslint-plugin-promise": "^4.2.1",
 		"esm": "^3.2.25",
-		"mocha": "^6.2.0",
+		"mocha": "^6.2.2",
+		"mocha-parallel-tests": "^2.2.2",
 		"nodemon": "^1.19.2",
 		"prettier": "^1.18.2"
 	},

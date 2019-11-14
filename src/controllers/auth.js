@@ -13,12 +13,14 @@ export default ({ jwt, userModel, bcrypt }) => {
       const user = await userModel.findOne({ where: { email } });
       if (!user) {
         return res.status(404).json({
+          status: 'error',
           message: 'User Not Found',
         });
       }
       const passwordCheck = await bcrypt.compare(password, user.password);
       if (!passwordCheck) {
         return res.status(400).json({
+          status: 'error',
           message: 'Incorrect Password',
         });
       }
