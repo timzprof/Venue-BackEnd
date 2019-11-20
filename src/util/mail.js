@@ -1,51 +1,22 @@
-import nodemailer from "nodemailer";
-import { google } from "googleapis";
-import { config } from "dotenv";
+import sgMail from '@sendgrid/mail';
+import {config} from 'dotenv';
 
 config();
 
-const OAuth2 = google.auth.OAuth2;
-const oauth2Client = new OAuth2(
-  process.env.CLIENT_ID,
-  process.env.CLIENT_SECRET,
-  "https://developers.google.com/oauthplayground"
-);
+sgMail.setApiKey(process.env.SEND_GRID_KEY);
 
-oauth2Client.setCredentials({
-  refresh_token: process.env.REFRESH_TOKEN
-});
-const accessToken = oauth2Client.getAccessToken();
+/**
+ * Send Mail
+ * @param {Object} msg - Message Object
+ * @param {String} msg.to - Mail Recipient
+ * @param {String} msg.from - Mail Sender
+ * @param {String} msg.subject - Mail Subject
+ * @param {String} msg.html - Mail Html Text
+ * @param {String} msg.replyTo - Mail Reply-To Recipient
+ * @param {Array} msg.bcc - Mail BCC
+ */
+const sendMail = (msg) => {
+  return sgMail.send(msg);
+}
 
-const smtpConfig = {
-  service: "gmail",
-  auth: {
-    type: "OAuth2",
-    user: process.env.GMAIL_EMAIL,
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    refreshToken: process.env.REFRESH_TOKEN,
-    accessToken
-  }
-};
-
-const smtpTransport = nodemailer.createTransport(smtpConfig);
-
-const sendMail = ({ to, subject, html }) => {
-  const mailOptions = {
-    from: process.env.GMAIL_EMAIL,
-    to,
-    subject,
-    html
-  };
-  return new Promise((resolve, reject) => {
-    smtpTransport.sendMail(mailOptions, (error, response) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve(response);
-      }
-    });
-  });
-};
-
-export default { sendMail };
+export default {sendMail};

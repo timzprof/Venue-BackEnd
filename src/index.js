@@ -128,7 +128,8 @@ app.use(
 		expressValidator: check,
 		validator,
 		userModel,
-		bookingModel
+		bookingModel,
+		venueModel
 	})
 );
 
@@ -154,7 +155,7 @@ app.use((error, req, res, next) => {
 	};
 	if (process.env.NODE_ENV === "development") {
 		responseObj.errorStack = error.stack;
-		responseObj.errors = error.errors || [];
+		responseObj.errors = error.errors || error.response.body.errors || [];
 	}
 	return res.status(error.statusCode).json(responseObj);
 });

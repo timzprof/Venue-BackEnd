@@ -10,6 +10,7 @@ import auth from "../util/auth";
  * @param  {Function} RouterParams.expressValidator - Express Validator(check)
  * @param  {Object} RouterParams.validator - Custom Validator
  * @param  {Object} RouterParams.bookingeModel - Resource Model
+ * @param {Object} RouterParams.venueModel
  * @returns {Object} ExpressRouter
  */
 export default ({
@@ -18,12 +19,14 @@ export default ({
 	expressValidator,
 	validator,
 	userModel,
-	bookingModel
+	bookingModel,
+	venueModel
 }) => {
 	const bookingController = BookingController({
 		bcrypt,
 		userModel,
-		bookingModel
+		bookingModel,
+		venueModel
 	});
 	const bookingRouter = express.Router();
 
@@ -75,14 +78,14 @@ export default ({
 		bookingController.makeBooking
 	);
 
-	bookingRouter.put(
+	bookingRouter.patch(
 		"/:id/approve",
 		auth.verifyToken,
 		auth.verifyAdmin,
 		bookingController.approveBooking
 	);
 
-	bookingRouter.put(
+	bookingRouter.patch(
 		"/:id/reject",
 		auth.verifyToken,
 		auth.verifyAdmin,

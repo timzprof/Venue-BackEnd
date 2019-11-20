@@ -29,15 +29,12 @@ export default ({Sequelize, db, User, Venue}) => {
 		},
 		timeframe: {
 			type: Sequelize.ARRAY(Sequelize.STRING),
-      allowNull: false,
-      validate: {
-        isAlphanumeric: true
-      }
+			allowNull: false
 		},
 		status: {
-      type: Sequelize.STRING,
-      default: 'pending'
-    }
+			type: Sequelize.STRING,
+			allowNUll: false
+		}
 	});
 
 	Booking.belongsTo(Venue, {constraints: true, onDelete: "CASCADE"});

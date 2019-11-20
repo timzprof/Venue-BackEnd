@@ -1,14 +1,15 @@
 import randomize from "../util/randomize";
+import mailService from "../util/mail";
 
 /**
  * Booking Controlller Initialization Function
  * @param  {Object} RouterParams - Router Parameters
  * @param {Object} RouterParams.bcrypt - Bcryptjs
  * @param  {Object} RouterParams.userModel - User Model
- * @param  {Object} RouterParams.bookingeModel - Resource Model
+ * @param  {Object} RouterParams.bookingModel - Resource Model
  * @returns {Object} ControllerObject
  */
-export default ({bcrypt, userModel, bookingeModel}) => {
+export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 	/**
 	 * Make a Booking
 	 * @param  {Object} req
@@ -38,13 +39,14 @@ export default ({bcrypt, userModel, bookingeModel}) => {
 					type: "user"
 				});
 			}
-			const booking = await bookingeModel.create({
+			const booking = await bookingModel.create({
 				eventTitle,
 				eventDescription,
 				date,
 				timeframe,
 				venueId,
-				userId: user.dataValues.id
+				userId: user.dataValues.id,
+				status: "pending"
 			});
 			return res.status(201).json({
 				status: "success",
@@ -64,7 +66,19 @@ export default ({bcrypt, userModel, bookingeModel}) => {
 	 */
 	const getAllBookings = async (req, res, next) => {
 		try {
-			const bookings = await bookingeModel.findAll({where: {...req.query}});
+			const {status} = req.query;
+			const bookings = await bookingModel.findAll({
+				where: {status},
+				include: [
+					{
+						model: venueModel,
+						attributes: ["title", "address", "capacity", "adminId"],
+						where: {
+							adminId: req.user.id
+						}
+					}
+				]
+			});
 			return res.status(200).json({
 				status: "success",
 				message: "Bookings retrieved",
@@ -84,14 +98,33 @@ export default ({bcrypt, userModel, bookingeModel}) => {
 	const approveBooking = async (req, res, next) => {
 		try {
 			const {id} = req.params;
-			let booking = await bookingeModel.findOne({where: {id}});
+			let booking = await bookingModel.findOne({
+				where: {id},
+				include: [
+					{
+						model: userModel,
+						attributes: ["username", "email"]
+					}
+				]
+			});
 			if (!booking) {
 				const err = new Error("Booking Not Found");
 				err.statusCode = 404;
 				throw err;
 			}
 			booking = await booking.update({status: "approved"});
-			// Send Mail to user
+			await mailService.sendMail({
+				to: booking.user.dataValues.email,
+				bcc: [req.user.email],
+				from: req.user.email,
+				subject: "Venue Booking Approved",
+				html: `
+					<p>Hello ${booking.user.dataValues.username},</p>
+
+					<p>Your venue booking has been approved. You will be duely contacted regarding the negotiations soon</p>
+				`,
+				replyTo: req.user.email
+			});
 			return res.status(200).json({
 				status: "success",
 				message: "Booking Approved",
@@ -111,14 +144,33 @@ export default ({bcrypt, userModel, bookingeModel}) => {
 	const rejectBooking = async (req, res, next) => {
 		try {
 			const {id} = req.params;
-			let booking = await bookingeModel.findOne({where: {id}});
+			let booking = await bookingModel.findOne({
+				where: {id},
+				include: [
+					{
+						model: userModel,
+						attributes: ["username", "email"]
+					}
+				]
+			});
 			if (!booking) {
 				const err = new Error("Booking Not Found");
 				err.statusCode = 404;
 				throw err;
 			}
-			booking = await booking.update({status: "approved"});
-			// Send Mail to user
+			booking = await booking.update({status: "rejected"});
+			await mailService.sendMail({
+				to: booking.user.dataValues.email,
+				bcc: [req.user.email],
+				from: req.user.email,
+				subject: "Venue Booking Rejected",
+				html: `
+					<p>Hello ${booking.user.dataValues.username},</p>
+
+					<p>Your venue booking has been rejected.</p>
+				`,
+				replyTo: req.user.email
+			});
 			return res.status(200).json({
 				status: "success",
 				message: "Booking Rejected",
