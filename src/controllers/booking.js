@@ -78,7 +78,7 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 					}
 				]
 			};
-			if (status) config["where"] = {status};
+			if (status) config.where = {status};
 			const bookings = await bookingModel.findAll(config);
 			return res.status(200).json({
 				status: "success",
