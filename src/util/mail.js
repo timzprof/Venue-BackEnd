@@ -15,8 +15,8 @@ sgMail.setApiKey(process.env.SEND_GRID_KEY);
  * @param {String} msg.replyTo - Mail Reply-To Recipient
  * @param {Array} msg.bcc - Mail BCC
  */
-const sendMail = (msg) => {
+const sendMail = msg => {
   return sgMail.send(msg);
-}
+};
 
 export default {sendMail};

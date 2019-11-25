@@ -6,7 +6,7 @@
  * @param  {Object} RouterParams.Venue - Initialized Venue Model
  * @returns {Object} SequelizeModel
  */
-export default ({ Sequelize, db, Venue }) => {
+export default ({Sequelize, db, Venue}) => {
   const Resource = db.define('resource', {
     id: {
       type: Sequelize.INTEGER,
@@ -28,7 +28,7 @@ export default ({ Sequelize, db, Venue }) => {
     },
   });
 
-  Resource.belongsTo(Venue, { constraints: true, onDelete: 'CASCADE' });
+  Resource.belongsTo(Venue, {constraints: true, onDelete: 'CASCADE'});
 
   return Resource;
 };

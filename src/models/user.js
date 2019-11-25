@@ -5,7 +5,7 @@
  * @param  {Object} RouterParams.db - Database Connection Object
  * @returns {Object} SequelizeModel
  */
-export default ({ Sequelize, db }) => {
+export default ({Sequelize, db}) => {
   const User = db.define('user', {
     id: {
       type: Sequelize.INTEGER,
@@ -29,7 +29,7 @@ export default ({ Sequelize, db }) => {
     },
     phone: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     password: {
       type: Sequelize.STRING,

@@ -1,5 +1,5 @@
-import VenueController from "../controllers/venue";
-import auth from "../util/auth";
+import VenueController from '../controllers/venue';
+import auth from '../util/auth';
 
 /**
  * Venue Router Initialization Function
@@ -12,74 +12,73 @@ import auth from "../util/auth";
  * @returns {Object} ExpressRouter
  */
 export default ({
-	express,
-	venueModel,
-	expressValidator,
-	validator,
-	resourceModel
+  express,
+  venueModel,
+  expressValidator,
+  validator,
+  resourceModel,
 }) => {
-	const venueController = VenueController({venueModel, resourceModel});
-	const venueRouter = express.Router();
+  const venueController = VenueController({venueModel, resourceModel});
+  const venueRouter = express.Router();
 
-	venueRouter.get("/", venueController.getVenues);
+  venueRouter.get('/', venueController.getVenues);
 
-	venueRouter.get("/:id", venueController.getSingleVenue);
+  venueRouter.get('/:id', venueController.getSingleVenue);
 
-	venueRouter.post(
-		"/",
-		auth.verifyToken,
-		auth.verifyAdmin,
-		[
-			expressValidator("title")
-				.trim()
-				.not()
-				.isEmpty(),
-			expressValidator("address")
-				.trim()
-				.not()
-				.isEmpty(),
-			expressValidator("capacity")
-				.trim()
-				.not()
-				.isEmpty(),
-			expressValidator("resources")
-				.not()
-				.isEmpty(),
-			expressValidator("timeAllowed")
-				.not()
-				.isEmpty(),
-			expressValidator("featureImage").custom((value, {req}) => {
-				console.log(req.files);
-				// if (!req.files.featureImage) {
-				// 	throw new Error("Feature Image Required");
-				// }
-				return true;
-			})
-		],
-		validator,
-		venueController.createVenue
-	);
+  venueRouter.post(
+    '/',
+    auth.verifyToken,
+    auth.verifyAdmin,
+    [
+      expressValidator('title')
+        .trim()
+        .not()
+        .isEmpty(),
+      expressValidator('address')
+        .trim()
+        .not()
+        .isEmpty(),
+      expressValidator('capacity')
+        .trim()
+        .not()
+        .isEmpty(),
+      expressValidator('resources')
+        .not()
+        .isEmpty(),
+      expressValidator('timeAllowed')
+        .not()
+        .isEmpty(),
+      expressValidator('featureImage').custom((value, {req}) => {
+        // if (!req.files.featureImage) {
+        // 	throw new Error("Feature Image Required");
+        // }
+        return true;
+      }),
+    ],
+    validator,
+    venueController.createVenue
+  );
 
-	venueRouter.put(
-		"/:id",
-		auth.verifyToken,
-		auth.verifyAdmin,
-		[
-			expressValidator("title").trim(),
-			expressValidator("address").trim(),
-			expressValidator("capacity").trim(),
-			expressValidator("resources").trim(),
-			expressValidator("timeAllowed").trim()
-		],
-		venueController.updateVenue
-	);
+  venueRouter.put(
+    '/:id',
+    auth.verifyToken,
+    auth.verifyAdmin,
+    [
+      expressValidator('title').trim(),
+      expressValidator('address').trim(),
+      expressValidator('capacity').trim(),
+      expressValidator('resources').trim(),
+      expressValidator('timeAllowed').trim(),
+    ],
+    venueController.updateVenue
+  );
 
-	venueRouter.delete(
-		"/:id",
-		auth.verifyToken,
-		auth.verifyAdmin,
-		venueController.deleteVenue
-	);
+  venueRouter.delete(
+    '/:id',
+    auth.verifyToken,
+    auth.verifyAdmin,
+    venueController.deleteVenue
+  );
 
-	return venueRouter;
+  return venueRouter;
 };

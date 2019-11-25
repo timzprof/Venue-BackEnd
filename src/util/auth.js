@@ -34,4 +34,4 @@ const verifyAdmin = (req, res, next) => {
   return next();
 };
 
-export default { verifyToken, verifyAdmin };
+export default {verifyToken, verifyAdmin};

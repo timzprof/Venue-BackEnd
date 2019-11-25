@@ -6,11 +6,11 @@
  * @param  {Object} RouterParams.userModel - User Model
  * @returns {Object} ControllerObject
  */
-export default ({ jwt, userModel, bcrypt }) => {
+export default ({jwt, userModel, bcrypt}) => {
   const login = async (req, res, next) => {
     try {
-      const { email, password } = req.body;
-      const user = await userModel.findOne({ where: { email } });
+      const {email, password} = req.body;
+      const user = await userModel.findOne({where: {email}});
       if (!user) {
         return res.status(404).json({
           status: 'error',
@@ -32,7 +32,7 @@ export default ({ jwt, userModel, bcrypt }) => {
         type: user.type,
       };
 
-      const token = jwt.sign({ user: safeUser }, process.env.JWT_SECRET, {
+      const token = jwt.sign({user: safeUser}, process.env.JWT_SECRET, {
         expiresIn: '24h',
       });
       return res.status(200).json({
@@ -46,5 +46,5 @@ export default ({ jwt, userModel, bcrypt }) => {
       return next(err);
     }
   };
-  return { login };
+  return {login};
 };

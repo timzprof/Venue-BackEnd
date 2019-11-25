@@ -1,5 +1,5 @@
-import BookingController from "../controllers/booking";
-import auth from "../util/auth";
+import BookingController from '../controllers/booking';
+import auth from '../util/auth';
 
 /**
  * Booking Router Initialization Function
@@ -14,83 +14,83 @@ import auth from "../util/auth";
  * @returns {Object} ExpressRouter
  */
 export default ({
-	express,
-	bcrypt,
-	expressValidator,
-	validator,
-	userModel,
-	bookingModel,
-	venueModel
+  express,
+  bcrypt,
+  expressValidator,
+  validator,
+  userModel,
+  bookingModel,
+  venueModel,
 }) => {
-	const bookingController = BookingController({
-		bcrypt,
-		userModel,
-		bookingModel,
-		venueModel
-	});
-	const bookingRouter = express.Router();
+  const bookingController = BookingController({
+    bcrypt,
+    userModel,
+    bookingModel,
+    venueModel,
+  });
+  const bookingRouter = express.Router();
 
-	bookingRouter.get(
-		"/",
-		auth.verifyToken,
-		auth.verifyAdmin,
-		bookingController.getAllBookings
-	);
+  bookingRouter.get(
+    '/',
+    auth.verifyToken,
+    auth.verifyAdmin,
+    bookingController.getAllBookings
+  );
 
-	bookingRouter.post(
-		"/",
-		[
-			expressValidator("eventTitle")
-				.trim()
-				.not()
-				.isEmpty(),
-			expressValidator("eventDescription")
-				.trim()
-				.not()
-				.isEmpty(),
-			expressValidator("date")
-				.trim()
-				.not()
-				.isEmpty(),
-			expressValidator("timeframe")
-				.isArray()
-				.not()
-				.isEmpty(),
-			expressValidator("contactName")
-				.trim()
-				.not()
-				.isEmpty(),
-			expressValidator("contactEmail")
-				.trim()
-				.isEmail()
-				.not()
-				.isEmpty(),
-			expressValidator("contactPhone")
-				.trim()
-				.not()
-				.isEmpty(),
-			expressValidator("venueId")
-				.trim()
-				.not()
-				.isEmpty()
-		],
-		validator,
-		bookingController.makeBooking
-	);
+  bookingRouter.post(
+    '/',
+    [
+      expressValidator('eventTitle')
+        .trim()
+        .not()
+        .isEmpty(),
+      expressValidator('eventDescription')
+        .trim()
+        .not()
+        .isEmpty(),
+      expressValidator('date')
+        .trim()
+        .not()
+        .isEmpty(),
+      expressValidator('timeframe')
+        .isArray()
+        .not()
+        .isEmpty(),
+      expressValidator('contactName')
+        .trim()
+        .not()
+        .isEmpty(),
+      expressValidator('contactEmail')
+        .trim()
+        .isEmail()
+        .not()
+        .isEmpty(),
+      expressValidator('contactPhone')
+        .trim()
+        .not()
+        .isEmpty(),
+      expressValidator('venueId')
+        .trim()
+        .not()
+        .isEmpty(),
+    ],
+    validator,
+    bookingController.makeBooking
+  );
 
-	bookingRouter.patch(
-		"/:id/approve",
-		auth.verifyToken,
-		auth.verifyAdmin,
-		bookingController.approveBooking
-	);
+  bookingRouter.patch(
+    '/:id/approve',
+    auth.verifyToken,
+    auth.verifyAdmin,
+    bookingController.approveBooking
+  );
 
-	bookingRouter.patch(
-		"/:id/reject",
-		auth.verifyToken,
-		auth.verifyAdmin,
-		bookingController.rejectBooking
-	);
+  bookingRouter.patch(
+    '/:id/reject',
+    auth.verifyToken,
+    auth.verifyAdmin,
+    bookingController.rejectBooking
+  );
 
-	return bookingRouter;
+  return bookingRouter;
 };
