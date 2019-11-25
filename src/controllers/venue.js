@@ -233,7 +233,10 @@ export default ({venueModel, resourceModel}) => {
 	const getSingleVenue = async (req, res, next) => {
 		try {
 			const {id} = req.params;
-			const venue = await venueModel.findOne({where: {id}});
+			const venue = await venueModel.findOne({
+				where: {id},
+				include: [{model: resourceModel}]
+			});
 			if (!venue) {
 				return res.status(404).json({
 					status: "error",
