@@ -36,13 +36,13 @@ export default ({venueModel, resourceModel}) => {
     const {featureImage, ...otherImages} = files;
     const imageUploads = [];
     const imagePaths = [];
-    const featureImagePath = path.resolve(`./src/temp/${featureImage.name}`);
+    const featureImagePath = path.resolve(`./temp/${featureImage.name}`);
     await featureImage.mv(featureImagePath);
     imageUploads.push(cloudinaryUtility.upload(featureImagePath));
     imagePaths.push(featureImagePath);
     for await (const imageKey of Object.keys(otherImages)) {
       const image = otherImages[imageKey];
-      const imagePath = path.resolve(`./src/temp/${image.name}`);
+      const imagePath = path.resolve(`./temp/${image.name}`);
       await image.mv(imagePath);
       imageUploads.push(cloudinaryUtility.upload(imagePath));
       imagePaths.push(imagePath);
