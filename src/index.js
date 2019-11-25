@@ -49,13 +49,17 @@ const bookingModel = BookingModel({
 cloudinaryUtility.init();
 
 const app = express();
+const accessLogStream = fs.createWriteStream(
+	path.resolve(__dirname, "./logs/access.log"),
+	{
+		flags: "a"
+	}
+);
 app.use(helmet());
 app.use(compression());
 app.use(
 	logger("common", {
-		stream: fs.createWriteStream(path.resolve(__dirname, "./logs/access.log"), {
-			flags: "a"
-		})
+		stream: accessLogStream
 	})
 );
 app.use(logger("dev"));
@@ -153,9 +157,22 @@ app.use((error, req, res, next) => {
 		message: "Something went wrong",
 		errorMessage: error.message
 	};
-	if (process.env.NODE_ENV === "development") {
+	if (
+		process.env.NODE_ENV === "development" ||
+		process.env.NODE_ENV === "production"
+	) {
 		responseObj.errorStack = error.stack;
 		responseObj.errors = error.errors || error.response.body.errors || [];
+	}
+	if (process.env.NODE_ENV === "production") {
+		const now = new Date();
+		accessLogStream.write(
+			`${now}\n
+			Errors:\n
+			${error.errors || error.response.body.errors || []} 
+			Stack:\n 
+			${error.stack}\n\n`
+		);
 	}
 	return res.status(error.statusCode).json(responseObj);
 });
