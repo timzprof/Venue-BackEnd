@@ -169,9 +169,9 @@ app.use((error, req, res, next) => {
 		accessLogStream.write(
 			`${now}\n
 			Errors:\n
-			${error.errors || error.response.body.errors || []} 
+			\t${JSON.stringify(error.errors) || JSON.stringify(error.response.body.errors) || []} 
 			Stack:\n 
-			${error.stack}\n\n`
+			\t${error.stack}\n\n`
 		);
 	}
 	console.log(
