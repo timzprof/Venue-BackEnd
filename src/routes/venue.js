@@ -49,9 +49,10 @@ export default ({
 				.not()
 				.isEmpty(),
 			expressValidator("featureImage").custom((value, {req}) => {
-				if (!req.files.featureImage) {
-					throw new Error("Feature Image Required");
-				}
+				console.log(req.files);
+				// if (!req.files.featureImage) {
+				// 	throw new Error("Feature Image Required");
+				// }
 				return true;
 			})
 		],
