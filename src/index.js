@@ -174,6 +174,13 @@ app.use((error, req, res, next) => {
 			${error.stack}\n\n`
 		);
 	}
+	console.log(
+		`${now}\n
+		Errors:\n
+		${error.errors || error.response.body.errors || []} 
+		Stack:\n 
+		${error.stack}\n\n`
+	)
 	return res.status(error.statusCode).json(responseObj);
 });
 
