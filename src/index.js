@@ -177,7 +177,7 @@ app.use((error, req, res, next) => {
 	console.log(
 		`${now}\n
 		Errors:\n
-		${error.errors || error.response.body.errors || []} 
+		${JSON.stringify(error.errors) || JSON.stringify(error.response.body.errors) || []} 
 		Stack:\n 
 		${error.stack}\n\n`
 	)
