@@ -164,8 +164,8 @@ app.use((error, req, res, next) => {
 		responseObj.errorStack = error.stack;
 		responseObj.errors = error.errors || error.response.body.errors || [];
 	}
+	const now = new Date();
 	if (process.env.NODE_ENV === "production") {
-		const now = new Date();
 		accessLogStream.write(
 			`${now}\n
 			Errors:\n
