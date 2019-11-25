@@ -170,7 +170,7 @@ app.use((error, req, res, next) => {
       `${now}\n
 			Errors:\n
 			\t${JSON.stringify(error.errors) ||
-        JSON.stringify(error.response.body.errors) ||
+        JSON.stringify(error.response) ||
         []} 
 			Stack:\n 
 			\t${error.stack}\n\n`
@@ -179,7 +179,7 @@ app.use((error, req, res, next) => {
   console.log(
     `${now}\n
 		Errors:\n
-		${JSON.stringify(error.errors) || JSON.stringify(error.response.body.errors) || []} 
+		${JSON.stringify(error.errors) || JSON.stringify(error.response) || []} 
 		Stack:\n 
 		${error.stack}\n\n`
   );
