@@ -140,6 +140,7 @@ export default ({venueModel, resourceModel}) => {
       return res.status(200).json({
         status: 'success',
         message: 'Venue Deleted',
+        data: venue.dataValues.id
       });
     } catch (error) {
       if (!error.statusCode) error.statusCode = 500;
