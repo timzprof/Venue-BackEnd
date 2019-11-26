@@ -52,7 +52,7 @@ export default ({
         if (!req.files) {
         	throw new Error("Feature Image Required");
         }
-        return false;
+        return true;
       }),
     ],
     validator,
