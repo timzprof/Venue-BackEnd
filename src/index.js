@@ -15,6 +15,7 @@ import listEndpoints from "express-list-endpoints";
 import initializeDatabase from "./util/db";
 import validator from "./util/validator";
 import cloudinaryUtility from "./util/cloudinary";
+import extras from './util/extra';
 
 // Models
 import UserModel from "./models/user";
@@ -27,6 +28,7 @@ import AuthRouter from "./routes/auth";
 import VenueRouter from "./routes/venue";
 import BookingRouter from "./routes/booking";
 
+extras.setupFlat();
 config();
 const URL_PREFIX = "/api/v1";
 const PORT = process.env.PORT || 7000;
