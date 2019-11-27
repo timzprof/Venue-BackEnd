@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node build/index.js",
-		"dev": "nodemon --exec babel-node src/index.js",
+		"dev": "set DEBUG=venue/* && nodemon --exec babel-node src/index.js",
 		"lint": "eslint --ignore-path .gitignore src/ --fix",
 		"prettier": "prettier --single-quote --trailing-comma es5 --print-width 85 --write --no-bracket-spacing src/**/*.js",
 		"build": "babel src --out-dir build --copy-files",
@@ -35,6 +35,7 @@
 		"cloudinary": "^1.16.0",
 		"compression": "^1.7.4",
 		"date-fns": "^2.2.1",
+		"debug": "^4.1.1",
 		"dotenv": "^8.1.0",
 		"express": "^4.17.1",
 		"express-fileupload": "^1.1.6-alpha.6",
@@ -78,6 +79,7 @@
 		"prettier": "^1.18.2"
 	},
 	"engines": {
-		"node": "10"
+		"node": "12.9.0",
+		"npm": "6.13.0"
 	}
 }

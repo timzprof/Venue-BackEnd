@@ -15,7 +15,8 @@ import listEndpoints from "express-list-endpoints";
 import initializeDatabase from "./util/db";
 import validator from "./util/validator";
 import cloudinaryUtility from "./util/cloudinary";
-import extras from './util/extra';
+import extras from "./util/extra";
+import {debugLogger, prettyStringify} from "./util/logger";
 
 // Models
 import UserModel from "./models/user";
@@ -65,11 +66,18 @@ const accessLogStream = fs.createWriteStream(
 app.use(helmet());
 app.use(compression());
 app.use(
-	logger("common", {
-		stream: accessLogStream
-	})
+	logger(
+		':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time ms \n',
+		{
+			stream: accessLogStream
+		}
+	)
 );
-app.use(logger("dev"));
+app.use(
+	logger(
+		':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time ms \n'
+	)
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(
@@ -80,6 +88,9 @@ app.use(
 
 // Enable CORS
 app.use((req, res, next) => {
+	debugLogger(`Request body: ${prettyStringify(req.body)}`);
+	debugLogger(`Request params: ${prettyStringify(req.params)}`);
+	debugLogger(`Request headers: ${prettyStringify(req.headers)}`);
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
 	res.header(
@@ -176,16 +187,7 @@ app.use((error, req, res, next) => {
 		responseObj.errors = error.errors || error.response || [];
 	}
 	const now = new Date();
-	if (process.env.NODE_ENV === "production") {
-		accessLogStream.write(
-			`${now}\n
-			Errors:\n
-			\t${JSON.stringify(error.errors) || JSON.stringify(error.response) || []} 
-			Stack:\n 
-			\t${error.stack}\n\n`
-		);
-	}
-	console.log(
+	debugLogger(
 		`${now}\n
 		Errors:\n
 		${JSON.stringify(error.errors) || JSON.stringify(error.response) || []} 
@@ -198,14 +200,14 @@ app.use((error, req, res, next) => {
 // Connect to Database
 db.sync()
 	.then(() => {
-		console.log("DB Connection has been established");
+		debugLogger("DB Connection has been established", "venue/database");
 		app.listen(PORT, null, null, () => {
 			app.emit("DBConnected");
 		});
-		console.log("App Running on PORT", PORT);
+		debugLogger(`App Running on PORT: ${PORT}`);
 	})
 	.catch(err => {
-		console.error("Failed To connect to Database", err);
+		debugLogger(`Failed To connect to Database: ${err}`, "venue/database");
 	});
 
 module.exports = {
