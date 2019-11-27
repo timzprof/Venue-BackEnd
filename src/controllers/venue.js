@@ -140,7 +140,7 @@ export default ({venueModel, resourceModel}) => {
       return res.status(200).json({
         status: 'success',
         message: 'Venue Deleted',
-        data: venue.dataValues.id
+        data: venue.dataValues.id,
       });
     } catch (error) {
       if (!error.statusCode) error.statusCode = 500;
@@ -166,7 +166,7 @@ export default ({venueModel, resourceModel}) => {
       const {title, address, capacity, resources, timeAllowed} = req.body;
       const parsedTime = JSON.parse(timeAllowed);
       let featureImageUrl;
-      let otherImageUrls;
+      let otherImageUrls = [];
       if (req.files) {
         const uploadRes = await uploadImages(req.files);
         const results = await Promise.all(uploadRes.imageUploads);
