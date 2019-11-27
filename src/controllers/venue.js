@@ -203,7 +203,8 @@ export default ({venueModel, resourceModel}) => {
         await resourceModel.destroy({
           where: {venueId: venue.dataValues.id},
         });
-        for await (const resource of resources) {
+        const parsedResources = JSON.parse(resources);
+        for await (const resource of parsedResources) {
           const resc = await resourceModel.create({
             name: resource.name,
             value: resource.value,
