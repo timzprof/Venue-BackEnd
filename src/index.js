@@ -67,7 +67,7 @@ app.use(helmet());
 app.use(compression());
 app.use(
 	logger(
-		':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time ms \n',
+		':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status - :response-time ms \n',
 		{
 			stream: accessLogStream
 		}
@@ -75,7 +75,7 @@ app.use(
 );
 app.use(
 	logger(
-		':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time ms \n'
+		':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status - :response-time ms \n'
 	)
 );
 app.use(bodyParser.json());
