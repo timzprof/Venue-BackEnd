@@ -99,6 +99,7 @@ app.use((req, res, next) => {
   };
   debugLogger(`Request body: ${prettyStringify(req.body)}`);
   debugLogger(`Request params: ${prettyStringify(req.params)}`);
+  debugLogger(`Request query: ${prettyStringify(req.query)}`);
   debugLogger(`Request headers: ${prettyStringify(headers)}`);
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
