@@ -209,14 +209,14 @@ app.use((error, req, res, next) => {
 // Connect to Database
 db.sync()
   .then(() => {
-    debugLogger('DB Connection has been established', 'venue/database');
+    debugLogger('DB Connection has been established', 'venue/db');
     app.listen(PORT, null, null, () => {
       app.emit('DBConnected');
     });
     debugLogger(`App Running on PORT: ${PORT}`);
   })
   .catch(err => {
-    debugLogger(`Failed To connect to Database: ${err}`, 'venue/database');
+    debugLogger(`Failed To connect to Database: ${err}`, 'venue/db');
   });
 
 module.exports = {
