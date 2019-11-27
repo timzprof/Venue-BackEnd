@@ -88,9 +88,18 @@ app.use(
 
 // Enable CORS
 app.use((req, res, next) => {
+	const headers = {
+		host: req.headers.host,
+		connection: req.headers.connection,
+		'access-control-request-method': req.headers['access-control-request-method'],
+		origin: req.headers.origin,
+		'user-agent': req.headers['user-agent'],
+		'access-control-request-headers': req.headers['access-control-request-headers'],
+		referer: req.headers.referer
+	}
 	debugLogger(`Request body: ${prettyStringify(req.body)}`);
 	debugLogger(`Request params: ${prettyStringify(req.params)}`);
-	debugLogger(`Request headers: ${prettyStringify(req.headers)}`);
+	debugLogger(`Request headers: ${prettyStringify(headers)}`);
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
 	res.header(
