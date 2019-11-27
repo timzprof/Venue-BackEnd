@@ -32,8 +32,6 @@ export default ({
 
   bookingRouter.get(
     '/',
-    auth.verifyToken,
-    auth.verifyAdmin,
     bookingController.getAllBookings
   );
 
