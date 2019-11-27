@@ -30,10 +30,7 @@ export default ({
   });
   const bookingRouter = express.Router();
 
-  bookingRouter.get(
-    '/',
-    bookingController.getAllBookings
-  );
+  bookingRouter.get('/', bookingController.getAllBookings);
 
   bookingRouter.post(
     '/',
