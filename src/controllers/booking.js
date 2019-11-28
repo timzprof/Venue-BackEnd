@@ -78,6 +78,10 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 						where: {
 							id: venueId
 						}
+					},
+					{
+						model: userModel,
+						attributes: ["username", "email", "phone"]
 					}
 				]
 			};
