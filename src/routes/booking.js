@@ -74,14 +74,14 @@ export default ({
   );
 
   bookingRouter.patch(
-    '/:id/approve',
+    '/approve',
     auth.verifyToken,
     auth.verifyAdmin,
     bookingController.approveBooking
   );
 
   bookingRouter.patch(
-    '/:id/reject',
+    '/reject',
     auth.verifyToken,
     auth.verifyAdmin,
     bookingController.rejectBooking

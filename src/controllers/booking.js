@@ -105,9 +105,9 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 	 */
 	const approveBooking = async (req, res, next) => {
 		try {
-			const {id} = req.params;
+			const {bookingId} = req.body;
 			let booking = await bookingModel.findOne({
-				where: {id},
+				where: {id: bookingId},
 				include: [
 					{
 						model: userModel,
@@ -151,9 +151,9 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 	 */
 	const rejectBooking = async (req, res, next) => {
 		try {
-			const {id} = req.params;
+			const {bookingId} = req.body;
 			let booking = await bookingModel.findOne({
-				where: {id},
+				where: {id: bookingId},
 				include: [
 					{
 						model: userModel,
