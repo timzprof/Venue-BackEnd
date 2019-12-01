@@ -87,5 +87,23 @@ export default ({
     bookingController.rejectBooking
   );
 
+  bookingRouter.post(
+    '/disable',
+    auth.verifyToken,
+    auth.verifyAdmin,
+    [
+      expressValidator('date')
+        .trim()
+        .not()
+        .isEmpty(),
+      expressValidator('venueId')
+        .trim()
+        .not()
+        .isEmpty(),
+    ],
+    validator,
+    bookingController.disableBookingForDate
+  );
+
   return bookingRouter;
 };

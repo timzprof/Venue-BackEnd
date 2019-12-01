@@ -189,5 +189,39 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 			return next(error);
 		}
 	};
-	return {makeBooking, getAllBookings, approveBooking, rejectBooking};
+
+	/**
+	 * Disable a date for a venue for booking
+	 * @param {Object} req 
+	 * @param {Object} res 
+	 * @param {Function} next 
+	 */
+	const disableBookingForDate = async (req,res,next) => {
+		try {
+			const {
+				date,
+				venueId
+			} = req.body;
+			const venue = await venueModel.findOne({where: {id: venueId}});
+			const booking = await bookingModel.create({
+				eventTitle: 'Date Not Available',
+				eventDescription: 'Booking of this venue on this date is restricted',
+				date,
+				timeframe: venue.dataValues.timeframe,
+				venueId,
+				userId: req.user.id,
+				status: "diables"
+			});
+			return res.status(201).json({
+				status: "success",
+				message: "Date Disabled for Booking",
+				data: booking
+			});
+		} catch (error) {
+			if (!error.statusCode) error.statusCode = 500;
+			return next(error);
+		}
+	}
+
+	return {makeBooking, getAllBookings, approveBooking, rejectBooking,disableBookingForDate};
 };
