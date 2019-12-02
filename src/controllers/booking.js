@@ -231,7 +231,7 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
         eventTitle: 'Date Not Available',
         eventDescription: 'Booking of this venue on this date is restricted',
         date,
-        timeframe: venue.dataValues.timeframe,
+        timeframe: venue.dataValues.timeAllowed,
         venueId,
         userId: req.user.id,
         status: 'diables',
