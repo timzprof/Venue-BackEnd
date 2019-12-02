@@ -66,7 +66,6 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
    */
   const getAllBookings = async (req, res, next) => {
     try {
-      const {adminId, ...queries} = req.query;
       const config = {
         include: [
           {
@@ -79,8 +78,8 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
           },
         ],
       };
-	  if (queries) config.where = queries;
-	  if (adminId) config.include[0].where = {adminId}
+	  if (req.query) config.where = {...req.query};
+	  if (req.user) config.include[0].where = {adminId: req.user.id}
       const bookings = await bookingModel.findAll(config);
       return res.status(200).json({
         status: 'success',
