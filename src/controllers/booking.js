@@ -234,7 +234,7 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
         timeframe: venue.dataValues.timeAllowed,
         venueId,
         userId: req.user.id,
-        status: 'diables',
+        status: 'disabled',
       });
       return res.status(201).json({
         status: 'success',
