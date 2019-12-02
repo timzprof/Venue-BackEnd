@@ -67,10 +67,11 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
   const getAllBookings = async (req, res, next) => {
     try {
       const config = {
+		where: {...req.query},
         include: [
           {
             model: venueModel,
-			attributes: ['title', 'address', 'capacity', 'adminId']
+            attributes: ['title', 'address', 'capacity', 'adminId'],
           },
           {
             model: userModel,
@@ -78,8 +79,40 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
           },
         ],
       };
-	  if (req.query) config.where = {...req.query};
-	  if (req.user) config.include[0].where = {adminId: req.user.id}
+      const bookings = await bookingModel.findAll(config);
+      return res.status(200).json({
+        status: 'success',
+        message: 'Bookings retrieved',
+        data: bookings,
+      });
+    } catch (error) {
+      if (!error.statusCode) error.statusCode = 500;
+      return next(error);
+    }
+  };
+   /**
+   * Get All Admins Bookings
+   * @param  {Object} req
+   * @param  {Object} res
+   * @param  {Function} next
+   */
+  const getAllAdminsBookings = async (req, res, next) => {
+    try {
+      const config = {
+        include: [
+          {
+            model: venueModel,
+			attributes: ['title', 'address', 'capacity', 'adminId'],
+			where: {
+				adminId: req.user.id
+			}
+          },
+          {
+            model: userModel,
+            attributes: ['username', 'email', 'phone'],
+          },
+        ],
+      };
       const bookings = await bookingModel.findAll(config);
       return res.status(200).json({
         status: 'success',
@@ -219,6 +252,7 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
     getAllBookings,
     approveBooking,
     rejectBooking,
-    disableBookingForDate,
+	disableBookingForDate,
+	getAllAdminsBookings
   };
 };
