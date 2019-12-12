@@ -101,7 +101,7 @@ app.use((req, res, next) => {
   debugLogger(`Request params: ${prettyStringify(req.params)}`);
   debugLogger(`Request query: ${prettyStringify(req.query)}`);
   debugLogger(`Request headers: ${prettyStringify(headers)}`);
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'https://venue-management.netlify.com');
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
   res.header(
     'Access-Control-Allow-Headers',
@@ -190,19 +190,18 @@ app.use((error, req, res, next) => {
     errorMessage: error.message,
   };
   if (
-    process.env.NODE_ENV === 'development' ||
-    process.env.NODE_ENV === 'production'
+    process.env.NODE_ENV === 'development'
   ) {
     responseObj.errorStack = error.stack;
     responseObj.errors = error.errors || error.response || [];
   }
   const now = new Date();
   debugLogger(
-    `${now}\n
-		Errors:\n
-		${JSON.stringify(error.errors) || JSON.stringify(error.response) || []} 
-		Stack:\n 
-		${error.stack}\n\n`
+    `${now} \n
+      Errors: \n
+      ${JSON.stringify(error.errors) || JSON.stringify(error.response) || []} 
+      Stack: \n 
+      ${error.stack}\n\n`
   );
   return res.status(error.statusCode).json(responseObj);
 });
