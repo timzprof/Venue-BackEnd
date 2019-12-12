@@ -1,0 +1,85 @@
+{
+	"name": "venue-backend",
+	"version": "1.0.0",
+	"description": "Backend Repo for Venue Management App",
+	"main": "index.js",
+	"scripts": {
+		"start": "node build/index.js",
+		"dev": "set DEBUG=venue/* && nodemon --exec babel-node src/index.js",
+		"lint": "eslint --ignore-path .gitignore src/ --fix",
+		"prettier": "prettier --single-quote --trailing-comma es5 --print-width 85 --write --no-bracket-spacing src/**/*.js",
+		"build": "babel src --out-dir build --copy-files",
+		"prebuild": "npm run lint && npm run clean && npm run prettier",
+		"clean": "rm -rf build/*",
+		"test": "mocha -r @babel/register --recursive -t 10000 --exit",
+		"create-logs": "mkdir ./src/logs && cat ./src/logs/access.log"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/timzprof/Venue-BackEnd.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/timzprof/Venue-BackEnd/issues"
+	},
+	"homepage": "https://github.com/timzprof/Venue-BackEnd#readme",
+	"dependencies": {
+		"@babel/cli": "^7.6.2",
+		"@babel/core": "^7.6.2",
+		"@babel/preset-env": "^7.6.2",
+		"@sendgrid/mail": "^6.4.0",
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.19.0",
+		"cloudinary": "^1.16.0",
+		"compression": "^1.7.4",
+		"date-fns": "^2.2.1",
+		"debug": "^4.1.1",
+		"dotenv": "^8.1.0",
+		"express": "^4.17.1",
+		"express-fileupload": "^1.1.6-alpha.6",
+		"express-list-endpoints": "^4.0.1",
+		"express-validator": "^6.2.0",
+		"helmet": "^3.21.1",
+		"jsonwebtoken": "^8.5.1",
+		"morgan": "^1.9.1",
+		"pg": "^7.12.1",
+		"pg-hstore": "^2.3.3",
+		"pm2": "^4.1.2",
+		"sequelize": "^5.19.0"
+	},
+	"babel": {
+		"presets": [
+			[
+				"@babel/preset-env",
+				{
+					"targets": {
+						"node": true
+					}
+				}
+			]
+		]
+	},
+	"devDependencies": {
+		"@babel/node": "^7.6.2",
+		"@babel/register": "^7.7.0",
+		"chai": "^4.2.0",
+		"chai-http": "^4.3.0",
+		"eslint": "^6.4.0",
+		"eslint-config-airbnb": "^18.0.1",
+		"eslint-config-prettier": "^6.3.0",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-prettier": "^3.1.1",
+		"eslint-plugin-promise": "^4.2.1",
+		"esm": "^3.2.25",
+		"mocha": "^6.2.2",
+		"mocha-parallel-tests": "^2.2.2",
+		"nodemon": "^1.19.2",
+		"prettier": "^1.18.2"
+	},
+	"engines": {
+		"node": "12.9.0",
+		"npm": "6.13.0"
+	}
+}

@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+- node
+cache:
+  directories:
+  - node_modules
+services:
+- postgresql
+before_install:
+- npm cache verify
+before_script:
+- cat .env.travis >> .env
+- psql -c "DROP DATABASE travis;" -U postgres
+- psql -c "CREATE DATABASE travis;" -U postgres
+- psql -c "CREATE USER root WITH PASSWORD 'password';" -U postgres
+after_success:
+- npm test
+branches:
+  only:
+  - master
+  - staging
+deploy:
+  provider: heroku
+  api_key:
+    secure: icWB0fM7GFThUSCuQEsErr2xj3PQ3rFQQd17IX2soGWu2AtXTjhAs6/pfiQ8nL205edQLDoBmIbUIIO5GvYvD/ELTw6ClBWAW0FrHtNFT8gQbMwu166us+n7tAmarUJgwSsZqGO+vidgyUiaZXsdB8SKTecE/HJMwEJ4f9Cw9Lmurv6r7YVu79gAbU6xl0vT4UjqzU98yzue7stnsYi6Sajoc7Vt9DgLlOxZtMKag6yN1TaxITALyp0tmrucYT1O48cXHi0FEkfd3NZSgu2kD0zcYgutumdDosfrhZq/yiREfOeqLnxOsbCShCbFbBOEhKKCxWPgtySoHyV2yOU3022CGi1TtwXNsVCdNx7Bo8Me9Qpe7s5uOv1XhQLXZd66GUNen2PWqWl5JMEizvjfDslTb5pKvyZkS4Uxr6kbmWvPHlRZJ8Gm1py+ucz4+9auws+YHigXlSlL5Ne81zDwxEcE4qhnaAanCkYDUxutr6sM9El4IWJ3me+cjhMITNT5iWAhJnY6IaVOrepvP21IDA6Bn8iw8J0+JZHIuZp+4WjNkrrCQnknyW3Nre8M+n65PLf3UuyDjsd4gk7HWAqGkuoVbyw9u3m66Us952SAzGcdM+fMks6uK3iJfR91qWzwgnEVn0m+OmUYu2cyI13rwBmwVdsEoMZlOgOgcAcTjeQ=
+  on: master
+  app: venue-app
