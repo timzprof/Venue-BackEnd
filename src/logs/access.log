@@ -23,3 +23,199 @@
 
 ::1 - - [27/Nov/2019:10:28:01 +0000] "POST /api/v1/auth/login HTTP/1.1" 422 930 "-" "PostmanRuntime/7.20.1" - 456.350 ms 
 
+::ffff:127.0.0.1 - - [12/Dec/2019:16:37:40 +0000] "POST /api/v1/auth/login HTTP/1.1" 422 - 418.493 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:37:40 +0000] "POST /api/v1/auth/login HTTP/1.1" 404 - 8.022 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:37:40 +0000] "POST /api/v1/auth/login HTTP/1.1" 400 - 87.365 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:37:40 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 - 107.642 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:39:13 +0000] "POST /api/v1/auth/login HTTP/1.1" 422 - 35.912 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:39:13 +0000] "POST /api/v1/auth/login HTTP/1.1" 404 - 14.406 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:39:14 +0000] "POST /api/v1/auth/login HTTP/1.1" 400 - 101.613 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:39:14 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 - 86.387 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:41:08 +0000] "POST /api/v1/auth/login HTTP/1.1" 422 - 37.615 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:41:08 +0000] "POST /api/v1/auth/login HTTP/1.1" 404 - 4.740 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:41:08 +0000] "POST /api/v1/auth/login HTTP/1.1" 400 - 97.447 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:41:08 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 - 98.152 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:43:28 +0000] "POST /api/v1/auth/login HTTP/1.1" 422 - 35.255 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:43:28 +0000] "POST /api/v1/auth/login HTTP/1.1" 404 - 8.150 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:43:28 +0000] "POST /api/v1/auth/login HTTP/1.1" 400 - 112.082 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:43:29 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 - 106.097 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:43:29 +0000] "GET /api/v1/venue HTTP/1.1" 200 - 107.888 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:43:29 +0000] "GET /api/v1/venue/10000 HTTP/1.1" 404 - 6.596 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:16:43:29 +0000] "GET /api/v1/venue/2 HTTP/1.1" 200 - 12.769 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:30:15 +0000] "POST /api/v1/auth/login HTTP/1.1" 422 - 312.204 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:30:15 +0000] "POST /api/v1/auth/login HTTP/1.1" 404 - 6.871 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:30:15 +0000] "POST /api/v1/auth/login HTTP/1.1" 400 - 85.003 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:30:15 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 - 103.681 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:30:15 +0000] "GET /api/v1/venue HTTP/1.1" 200 - 15.683 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:30:15 +0000] "GET /api/v1/venue/10000 HTTP/1.1" 404 - 6.150 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:30:15 +0000] "GET /api/v1/venue/3 HTTP/1.1" 200 - 9.000 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:30:15 +0000] "POST /api/v1/venue HTTP/1.1" 401 - 3.317 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:30:15 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 28.090 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:30:15 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 6.142 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:37 +0000] "GET /api/v1/venue HTTP/1.1" 200 - 16.678 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:37 +0000] "GET /api/v1/venue/10000 HTTP/1.1" 404 - 5.522 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:37 +0000] "GET /api/v1/venue/4 HTTP/1.1" 200 - 10.136 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:37 +0000] "POST /api/v1/venue HTTP/1.1" 401 - 11.061 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:37 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 30.798 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:37 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 8.281 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:38 +0000] "PUT /api/v1/venue/4 HTTP/1.1" 401 - 5.439 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:38 +0000] "PUT /api/v1/venue/4 HTTP/1.1" 500 - 27.320 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:48 +0000] "PUT /api/v1/venue/4 HTTP/1.1" 500 - 10.901 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:58 +0000] "DELETE /api/v1/venue/5 HTTP/1.1" 401 - 2.145 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:31:58 +0000] "PUT /api/v1/venue/5 HTTP/1.1" 404 - 3.591 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:32 +0000] "POST /api/v1/auth/login HTTP/1.1" 422 - 111.486 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:32 +0000] "POST /api/v1/auth/login HTTP/1.1" 404 - 6.591 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:32 +0000] "POST /api/v1/auth/login HTTP/1.1" 400 - 82.817 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:32 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 - 88.914 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:32 +0000] "GET /api/v1/venue HTTP/1.1" 200 - 17.717 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:32 +0000] "GET /api/v1/venue/10000 HTTP/1.1" 404 - 10.279 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:33 +0000] "GET /api/v1/venue/1 HTTP/1.1" 200 - 18.443 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:33 +0000] "POST /api/v1/venue HTTP/1.1" 401 - 6.390 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:33 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 17.654 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:33 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 11.730 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:35 +0000] "POST /api/v1/venue HTTP/1.1" 201 - 2494.726 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:35 +0000] "PUT /api/v1/venue/1 HTTP/1.1" 401 - 4.198 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:35 +0000] "PUT /api/v1/venue/1 HTTP/1.1" 500 - 20.266 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:45 +0000] "PUT /api/v1/venue/1 HTTP/1.1" 500 - 11.675 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:55 +0000] "DELETE /api/v1/venue/2 HTTP/1.1" 401 - 10.039 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:35:55 +0000] "PUT /api/v1/venue/2 HTTP/1.1" 500 - 15.369 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:46 +0000] "POST /api/v1/auth/login HTTP/1.1" 422 - 33.318 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:46 +0000] "POST /api/v1/auth/login HTTP/1.1" 404 - 4.553 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:46 +0000] "POST /api/v1/auth/login HTTP/1.1" 400 - 83.926 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:46 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 - 87.036 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:47 +0000] "GET /api/v1/venue HTTP/1.1" 200 - 14.671 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:47 +0000] "GET /api/v1/venue/10000 HTTP/1.1" 404 - 8.153 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:47 +0000] "GET /api/v1/venue/3 HTTP/1.1" 200 - 6.611 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:47 +0000] "POST /api/v1/venue HTTP/1.1" 401 - 2.322 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:47 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 23.433 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:47 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 9.440 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:50 +0000] "POST /api/v1/venue HTTP/1.1" 201 - 2987.208 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:50 +0000] "PUT /api/v1/venue/3 HTTP/1.1" 401 - 5.102 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:38:50 +0000] "PUT /api/v1/venue/3 HTTP/1.1" 500 - 22.290 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:39:00 +0000] "PUT /api/v1/venue/3 HTTP/1.1" 500 - 19.592 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:39:10 +0000] "DELETE /api/v1/venue/4 HTTP/1.1" 401 - 3.546 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:17:39:10 +0000] "PUT /api/v1/venue/4 HTTP/1.1" 500 - 5.252 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:18 +0000] "POST /api/v1/auth/login HTTP/1.1" 422 - 448.173 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:18 +0000] "POST /api/v1/auth/login HTTP/1.1" 404 - 5.631 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:18 +0000] "POST /api/v1/auth/login HTTP/1.1" 400 - 85.263 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:19 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 - 114.798 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:19 +0000] "GET /api/v1/venue HTTP/1.1" 200 - 12.955 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:19 +0000] "GET /api/v1/venue/10000 HTTP/1.1" 404 - 8.343 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:19 +0000] "GET /api/v1/venue/5 HTTP/1.1" 200 - 10.850 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:19 +0000] "POST /api/v1/venue HTTP/1.1" 401 - 9.531 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:19 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 42.398 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:19 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 8.968 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:30 +0000] "PUT /api/v1/venue/5 HTTP/1.1" 401 - 10.522 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:30 +0000] "POST /api/v1/venue HTTP/1.1" 201 - 10624.993 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:15:30 +0000] "DELETE /api/v1/venue/6 HTTP/1.1" 401 - 3.429 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:11 +0000] "POST /api/v1/auth/login HTTP/1.1" 422 - 33.296 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:11 +0000] "POST /api/v1/auth/login HTTP/1.1" 404 - 4.939 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:11 +0000] "POST /api/v1/auth/login HTTP/1.1" 400 - 88.172 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:11 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 - 86.292 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:11 +0000] "GET /api/v1/venue HTTP/1.1" 200 - 10.874 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:11 +0000] "GET /api/v1/venue/10000 HTTP/1.1" 404 - 7.187 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:11 +0000] "GET /api/v1/venue/7 HTTP/1.1" 200 - 8.839 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:11 +0000] "POST /api/v1/venue HTTP/1.1" 401 - 4.025 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:11 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 17.952 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:11 +0000] "POST /api/v1/venue HTTP/1.1" 422 - 9.849 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:17 +0000] "POST /api/v1/venue HTTP/1.1" 201 - 5484.172 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:17 +0000] "PUT /api/v1/venue/7 HTTP/1.1" 401 - 2.480 ms 
+
+::ffff:127.0.0.1 - - [12/Dec/2019:19:17:17 +0000] "DELETE /api/v1/venue/8 HTTP/1.1" 401 - 2.662 ms 
+

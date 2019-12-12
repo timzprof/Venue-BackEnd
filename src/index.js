@@ -226,4 +226,5 @@ module.exports = {
   venueModel,
   resourceModel,
   bcrypt,
+  jwt
 };
