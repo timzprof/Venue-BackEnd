@@ -103,14 +103,10 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 				include: [
 					{
 						model: venueModel,
-						attributes: ["title", "address", "capacity", "adminId"],
-						where: {
-							adminId: req.user.id
-						}
+						attributes: ["title", "address", "capacity", "adminId"]
 					}
 				]
 			};
-			debugLogger(prettyStringify(config), 'venue/booking');
 			const bookings = await bookingModel.findAll(config);
 			debugLogger(
 				prettyStringify({
