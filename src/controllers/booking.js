@@ -1,6 +1,6 @@
 import randomize from "../util/randomize";
 import mailService from "../util/mail";
-import {debugLogger} from "../util/logger";
+import {debugLogger, prettyStringify} from "../util/logger";
 
 /**
  * Booking Controlller Initialization Function
@@ -110,14 +110,14 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 					}
 				]
 			};
-			debugLogger(config, 'venue/booking');
+			debugLogger(prettyStringify(config), 'venue/booking');
 			const bookings = await bookingModel.findAll(config);
 			debugLogger(
-				{
+				prettyStringify({
 					status: "success",
 					message: "Bookings retrieved",
 					data: {...bookings.dataValues}
-				},
+				}),
 				"venue/booking"
 			);
 			return res.status(200).json({
