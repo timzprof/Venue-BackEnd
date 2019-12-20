@@ -107,7 +107,7 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 					}
 				]
 			};
-			const bookings = await bookingModel.findAll();
+			const bookings = await bookingModel.findAll({raw: true});
 			debugLogger(
 				prettyStringify({
 					status: "success",
