@@ -1,5 +1,6 @@
 import randomize from '../util/randomize';
 import mailService from '../util/mail';
+import { debugLogger } from '../util/logger';
 
 /**
  * Booking Controlller Initialization Function
@@ -114,6 +115,11 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
         ],
       };
       const bookings = await bookingModel.findAll(config);
+      debugLogger({
+        status: 'success',
+        message: 'Bookings retrieved',
+        data: bookings,
+      }, 'venue/response');
       return res.status(200).json({
         status: 'success',
         message: 'Bookings retrieved',
