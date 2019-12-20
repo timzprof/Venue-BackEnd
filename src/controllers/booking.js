@@ -107,13 +107,10 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 						where: {
 							adminId: req.user.id
 						}
-					},
-					{
-						model: userModel,
-						attributes: ["username", "email", "phone"]
 					}
 				]
 			};
+			debugLogger(config, 'venue/booking');
 			const bookings = await bookingModel.findAll(config);
 			debugLogger(
 				{
@@ -121,7 +118,7 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 					message: "Bookings retrieved",
 					data: {...bookings.dataValues}
 				},
-				"venue/response"
+				"venue/booking"
 			);
 			return res.status(200).json({
 				status: "success",
