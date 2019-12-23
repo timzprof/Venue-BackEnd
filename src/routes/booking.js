@@ -36,7 +36,7 @@ export default ({
 		"/all",
 		auth.verifyToken,
 		auth.verifyAdmin,
-		bookingController.getAllAdminsBookings
+		bookingController.getAllBookings
 	);
 
 	bookingRouter.post(

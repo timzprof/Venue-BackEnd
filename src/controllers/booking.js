@@ -1,6 +1,5 @@
 import randomize from "../util/randomize";
 import mailService from "../util/mail";
-import {debugLogger, prettyStringify} from "../util/logger";
 
 /**
  * Booking Controlller Initialization Function
@@ -80,46 +79,14 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 					}
 				]
 			};
+			if(req.user){ 
+				config.include[0].where = {adminId: req.user.id};
+			}
 			const bookings = await bookingModel.findAll(config);
 			return res.status(200).json({
 				status: "success",
 				message: "Bookings retrieved",
 				data: bookings
-			});
-		} catch (error) {
-			if (!error.statusCode) error.statusCode = 500;
-			return next(error);
-		}
-	};
-	/**
-	 * Get All Admins Bookings
-	 * @param  {Object} req
-	 * @param  {Object} res
-	 * @param  {Function} next
-	 */
-	const getAllAdminsBookings = async (req, res, next) => {
-		try {
-			const config = {
-				include: [
-					{
-						model: venueModel,
-						attributes: ["title", "address", "capacity", "adminId"]
-					}
-				]
-			};
-			const bookings = await bookingModel.findAll({raw: true});
-			debugLogger(
-				prettyStringify({
-					status: "success",
-					message: "Bookings retrieved",
-					data: {...bookings.dataValues}
-				}),
-				"venue/booking"
-			);
-			return res.status(200).json({
-				status: "success",
-				message: "Bookings retrieved",
-				data: {...bookings.dataValues}
 			});
 		} catch (error) {
 			if (!error.statusCode) error.statusCode = 500;
@@ -254,7 +221,6 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 		getAllBookings,
 		approveBooking,
 		rejectBooking,
-		disableBookingForDate,
-		getAllAdminsBookings
+		disableBookingForDate
 	};
 };
