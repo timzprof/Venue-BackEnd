@@ -71,15 +71,15 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 				include: [
 					{
 						model: venueModel,
-						attributes: ["title", "address", "capacity", "adminId"]
+						attributes: ["id", "title", "address", "capacity", "adminId"]
 					},
 					{
 						model: userModel,
-						attributes: ["username", "email", "phone"]
+						attributes: ["id", "username", "email", "phone"]
 					}
 				]
 			};
-			if(req.user){ 
+			if (req.user) {
 				config.include[0].where = {adminId: req.user.id};
 			}
 			const bookings = await bookingModel.findAll(config);
@@ -192,15 +192,16 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 	 * @param {Object} res
 	 * @param {Function} next
 	 */
-	const disableBookingForDate = async (req, res, next) => {
+	const disableVenueByDateTime = async (req, res, next) => {
 		try {
-			const {date, venueId} = req.body;
+			const {date, timeframe, venueId} = req.body;
 			const venue = await venueModel.findOne({where: {id: venueId}});
 			const booking = await bookingModel.create({
 				eventTitle: "Date Not Available",
-				eventDescription: "Booking of this venue on this date is restricted",
+				eventDescription:
+					"Booking of this venue on this date is restricted",
 				date,
-				timeframe: venue.dataValues.timeAllowed,
+				timeframe: timeframe || venue.dataValues.timeAllowed,
 				venueId,
 				userId: req.user.id,
 				status: "disabled"
@@ -221,6 +222,6 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 		getAllBookings,
 		approveBooking,
 		rejectBooking,
-		disableBookingForDate
+		disableVenueByDateTime
 	};
 };

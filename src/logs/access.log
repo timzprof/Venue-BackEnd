@@ -257,3 +257,51 @@
 
 ::1 - - [23/Dec/2019:07:31:52 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 45.073 ms 
 
+::1 - - [23/Jan/2020:10:49:39 +0000] "POST /api/v1/auth/login HTTP/1.1" 200 - 592.688 ms 
+
+::1 - - [23/Jan/2020:10:50:09 +0000] "GET /api/v1/venue HTTP/1.1" 200 - 1163.032 ms 
+
+::1 - - [23/Jan/2020:10:52:07 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 1360.245 ms 
+
+::1 - - [23/Jan/2020:10:53:32 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 74.249 ms 
+
+::1 - - [23/Jan/2020:10:54:55 +0000] "POST /api/v1/booking/disable HTTP/1.1" 500 - 162.082 ms 
+
+::1 - - [23/Jan/2020:10:56:03 +0000] "POST /api/v1/booking/disable HTTP/1.1" 500 - 288.295 ms 
+
+::1 - - [23/Jan/2020:11:20:26 +0000] "POST /api/v1/booking/disable HTTP/1.1" 500 - 436.936 ms 
+
+::ffff:127.0.0.1 - - [23/Jan/2020:11:25:27 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 262.648 ms 
+
+::1 - - [23/Jan/2020:11:26:26 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 61.337 ms 
+
+::1 - - [23/Jan/2020:11:26:48 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 1249.644 ms 
+
+::1 - - [23/Jan/2020:11:28:26 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 540.356 ms 
+
+::1 - - [23/Jan/2020:11:28:50 +0000] "POST /api/v1/booking/disable HTTP/1.1" 500 - 205.894 ms 
+
+::1 - - [23/Jan/2020:11:56:11 +0000] "POST /api/v1/booking/disable HTTP/1.1" 500 - 330.927 ms 
+
+::1 - - [23/Jan/2020:11:56:35 +0000] "POST /api/v1/booking/disable HTTP/1.1" 500 - 177.480 ms 
+
+::1 - - [23/Jan/2020:11:56:54 +0000] "POST /api/v1/booking/disable HTTP/1.1" 500 - 186.526 ms 
+
+::1 - - [23/Jan/2020:11:57:09 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 185.280 ms 
+
+::1 - - [23/Jan/2020:11:57:28 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 47.450 ms 
+
+::1 - - [23/Jan/2020:11:58:49 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 133.211 ms 
+
+::ffff:127.0.0.1 - - [23/Jan/2020:11:59:23 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 53.923 ms 
+
+::1 - - [23/Jan/2020:11:59:43 +0000] "GET /api/v1/booking/all HTTP/1.1" 200 - 138.604 ms 
+
+::1 - - [23/Jan/2020:12:00:22 +0000] "POST /api/v1/booking/disable HTTP/1.1" 500 - 714.188 ms 
+
+::1 - - [23/Jan/2020:12:00:58 +0000] "POST /api/v1/booking/disable HTTP/1.1" 500 - 134.292 ms 
+
+::1 - - [23/Jan/2020:12:01:50 +0000] "POST /api/v1/booking/disable HTTP/1.1" 201 - 72.323 ms 
+
+::1 - - [23/Jan/2020:20:11:02 +0000] "POST /api/v1/booking/disable HTTP/1.1" 201 - 1887.553 ms 
+

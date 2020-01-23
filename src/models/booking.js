@@ -8,36 +8,39 @@
  * @returns {Object} SequelizeModel
  */
 export default ({Sequelize, db, User, Venue}) => {
-  const Booking = db.define('booking', {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      allowNull: false,
-      primaryKey: true,
-    },
-    eventTitle: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    eventDescription: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    date: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    timeframe: {
-      type: Sequelize.ARRAY(Sequelize.STRING),
-      allowNull: false,
-    },
-    status: {
-      type: Sequelize.STRING,
-      allowNUll: false,
-    },
-  });
+	const Booking = db.define(
+		"booking",
+		{
+			id: {
+				type: Sequelize.INTEGER,
+				autoIncrement: true,
+				allowNull: false,
+				primaryKey: true
+			},
+			eventTitle: {
+				type: Sequelize.STRING,
+				allowNull: false
+			},
+			eventDescription: {
+				type: Sequelize.STRING,
+				allowNull: false
+			},
+			date: {
+				type: Sequelize.STRING,
+				allowNull: false
+			},
+			timeframe: {
+				type: Sequelize.ARRAY(Sequelize.STRING),
+				allowNull: false
+			},
+			status: {
+				type: Sequelize.STRING,
+				allowNUll: false
+			}
+		}
+	);
 
-  Booking.belongsTo(Venue, {constraints: true, onDelete: 'CASCADE'});
-  Booking.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
-  return Booking;
+	Booking.belongsTo(Venue, {constraints: true, onDelete: "CASCADE"});
+	Booking.belongsTo(User, {constraints: true, onDelete: "CASCADE"});
+	return Booking;
 };
