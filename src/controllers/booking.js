@@ -1,6 +1,5 @@
 import randomize from "../util/randomize";
 import mailService from "../util/mail";
-import {debugLogger} from '../util/logger';
 
 /**
  * Booking Controlller Initialization Function
