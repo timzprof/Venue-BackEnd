@@ -99,6 +99,7 @@ export default ({
 		auth.verifyToken,
 		auth.verifyAdmin,
 		[
+			expressValidator('timeframe'),
 			expressValidator("date")
 				.trim()
 				.not()
@@ -109,7 +110,7 @@ export default ({
 				.isEmpty()
 		],
 		validator,
-		bookingController.disableBookingForDate
+		bookingController.disableVenueByDateTime
 	);
 
 	return bookingRouter;
