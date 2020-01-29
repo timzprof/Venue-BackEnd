@@ -3,10 +3,10 @@ import mailService from "../util/mail";
 
 /**
  * Booking Controlller Initialization Function
- * @param  {Object} RouterParams - Router Parameters
- * @param {Object} RouterParams.bcrypt - Bcryptjs
- * @param  {Object} RouterParams.userModel - User Model
- * @param  {Object} RouterParams.bookingModel - Resource Model
+ * @param  {Object} ControllerParams - Controller Parameters
+ * @param {Object} ControllerParams.bcrypt - Bcryptjs
+ * @param  {Object} ControllerParams.userModel - User Model
+ * @param  {Object} ControllerParams.bookingModel - Resource Model
  * @returns {Object} ControllerObject
  */
 export default ({bcrypt, userModel, bookingModel, venueModel}) => {
