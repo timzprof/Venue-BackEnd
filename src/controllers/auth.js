@@ -1,9 +1,9 @@
 /**
  * Auth Controller Initialization Function
- * @param  {Object} RouterParams - Router Parameters
- * @param  {Object} RouterParams.jwt - Jsonwebtoken
- * @param  {Object} RouterParams.bcrypt - bcryptjs
- * @param  {Object} RouterParams.userModel - User Model
+ * @param  {Object} ControllerParams - Controller Parameters
+ * @param  {Object} ControllerParams.jwt - Jsonwebtoken
+ * @param  {Object} ControllerParams.bcrypt - bcryptjs
+ * @param  {Object} ControllerParams.userModel - User Model
  * @returns {Object} ControllerObject
  */
 export default ({jwt, userModel, bcrypt}) => {

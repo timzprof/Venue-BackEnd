@@ -3,9 +3,9 @@ import path from 'path';
 import cloudinaryUtility from '../util/cloudinary';
 /**
  * Venue Controller Initialization Function
- * @param  {Object} RouterParams - Router Parameters
- * @param  {Object} RouterParams.venueModel - Venue Model
- * @param  {Object} RouterParams.resourceModel - Resource Model
+ * @param  {Object} ControllerParams - Controller Parameters
+ * @param  {Object} ControllerParams.venueModel - Venue Model
+ * @param  {Object} ControllerParams.resourceModel - Resource Model
  * @returns {Object} ControllerObject
  */
 export default ({venueModel, resourceModel}) => {

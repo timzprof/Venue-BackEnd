@@ -1,8 +1,8 @@
 /**
  * User Model Initialization Function
- * @param  {Object} RouterParams - Router Parameters
- * @param  {Object} RouterParams.Sequelize - Sequelize
- * @param  {Object} RouterParams.db - Database Connection Object
+ * @param  {Object} ModelParams - Model Parameters
+ * @param  {Object} ModelParams.Sequelize - Sequelize
+ * @param  {Object} ModelParams.db - Database Connection Object
  * @returns {Object} SequelizeModel
  */
 export default ({Sequelize, db}) => {
