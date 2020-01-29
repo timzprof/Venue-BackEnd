@@ -133,6 +133,13 @@ app.use(async (req, res, next) => {
   }
 });
 
+// Index Route
+app.get('/', (req, res) => {
+  return res.status(200).send(`
+      <h2>Welcome to Venue Management API</h2>
+  `);
+});
+
 app.use(
   `${URL_PREFIX}/auth`,
   AuthRouter({
