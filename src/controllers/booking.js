@@ -48,6 +48,26 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 				userId: user.dataValues.id,
 				status: "pending"
 			});
+			const venue = await venueModel.findOne({
+				where: {id: venueId},
+				include: [
+					{
+						model: userModel,
+						attributes: ["username","email"]
+					}
+				]
+			});
+			await mailService.sendMail({
+				to: venue.user.dataValues.email,
+				bcc: [email],
+				from: "venue@cits.unilag.edu.ng",
+				subject: "New Venue Booking",
+				html: `
+					<p>Hello ${venue.user.dataValues.username},</p>
+
+					<p>A new booking has been made for the venue: ${venue.dataValues.title}</p>
+				`
+			});
 			return res.status(201).json({
 				status: "success",
 				message: "Booking Submitted",
@@ -198,8 +218,7 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 			const venue = await venueModel.findOne({where: {id: venueId}});
 			const booking = await bookingModel.create({
 				eventTitle: "Date Not Available",
-				eventDescription:
-					"Booking of this venue on this date is restricted",
+				eventDescription: "Booking of this venue on this date is restricted",
 				date,
 				timeframe: timeframe || venue.dataValues.timeAllowed,
 				venueId,
