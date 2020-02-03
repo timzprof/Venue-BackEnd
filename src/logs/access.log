@@ -305,3 +305,47 @@
 
 ::1 - - [23/Jan/2020:20:11:02 +0000] "POST /api/v1/booking/disable HTTP/1.1" 201 - 1887.553 ms 
 
+::1 - - [03/Feb/2020:14:53:15 +0000] "POST /api/v1/booking HTTP/1.1" 500 - 1195.652 ms 
+
+::1 - - [03/Feb/2020:14:57:40 +0000] "POST /api/v1/booking HTTP/1.1" 500 - 1298.098 ms 
+
+::1 - - [03/Feb/2020:14:58:35 +0000] "POST /api/v1/booking HTTP/1.1" 500 - 924.879 ms 
+
+::1 - - [03/Feb/2020:16:21:35 +0000] "POST /api/v1/booking HTTP/1.1" 500 - 1398.988 ms 
+
+::1 - - [03/Feb/2020:16:25:17 +0000] "POST /api/v1/booking HTTP/1.1" - - - ms 
+
+::1 - - [03/Feb/2020:16:25:28 +0000] "POST /api/v1/booking HTTP/1.1" - - - ms 
+
+::1 - - [03/Feb/2020:16:26:50 +0000] "POST /api/v1/booking HTTP/1.1" 400 - 443.506 ms 
+
+::1 - - [03/Feb/2020:16:27:23 +0000] "POST /api/v1/booking HTTP/1.1" 400 - 597.367 ms 
+
+::1 - - [03/Feb/2020:16:28:26 +0000] "POST /api/v1/booking HTTP/1.1" 400 - 558.682 ms 
+
+::1 - - [03/Feb/2020:16:30:24 +0000] "POST /api/v1/booking HTTP/1.1" 400 - 477.331 ms 
+
+::1 - - [03/Feb/2020:16:31:03 +0000] "POST /api/v1/booking HTTP/1.1" 400 - 433.986 ms 
+
+::1 - - [03/Feb/2020:16:31:38 +0000] "POST /api/v1/booking HTTP/1.1" 400 - 507.616 ms 
+
+::1 - - [03/Feb/2020:16:39:53 +0000] "POST /api/v1/booking HTTP/1.1" 400 - 538.391 ms 
+
+::1 - - [03/Feb/2020:16:41:03 +0000] "POST /api/v1/booking HTTP/1.1" 400 - 634.528 ms 
+
+::1 - - [03/Feb/2020:16:41:27 +0000] "POST /api/v1/booking HTTP/1.1" 400 - 556.412 ms 
+
+::1 - - [03/Feb/2020:16:41:56 +0000] "POST /api/v1/booking HTTP/1.1" 500 - 1384.927 ms 
+
+::1 - - [03/Feb/2020:16:43:12 +0000] "POST /api/v1/booking HTTP/1.1" 500 - 670.492 ms 
+
+::1 - - [03/Feb/2020:23:21:02 +0000] "POST /api/v1/booking HTTP/1.1" 500 - 5431.018 ms 
+
+::1 - - [03/Feb/2020:23:21:02 +0000] "POST /api/v1/booking HTTP/1.1" 500 - 5129.023 ms 
+
+::1 - - [03/Feb/2020:23:21:02 +0000] "POST /api/v1/booking HTTP/1.1" 500 - 5939.210 ms 
+
+::1 - - [03/Feb/2020:23:21:02 +0000] "POST /api/v1/booking HTTP/1.1" 500 - 7087.978 ms 
+
+::1 - - [03/Feb/2020:23:22:11 +0000] "POST /api/v1/booking HTTP/1.1" 201 - 1096.260 ms 
+

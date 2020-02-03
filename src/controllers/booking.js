@@ -1,5 +1,5 @@
-import randomize from "../util/randomize";
 import mailService from "../util/mail";
+import {APIError, convertTime, randomize} from "../util/helpers";
 
 /**
  * Booking Controlller Initialization Function
@@ -10,6 +10,24 @@ import mailService from "../util/mail";
  * @returns {Object} ControllerObject
  */
 export default ({bcrypt, userModel, bookingModel, venueModel}) => {
+	// Helper Methods
+	const validateTimeframe = (newBookingTimeframe, acceptedBookingTimeframe) => {
+		const [newBookingStartTime, newBookingEndTime] = newBookingTimeframe.map(
+			convertTime
+		);
+		const [startTime, endTime] = acceptedBookingTimeframe.map(convertTime);
+		if (
+			startTime < newBookingStartTime && newBookingStartTime < endTime ||
+			startTime < newBookingEndTime && newBookingEndTime < endTime
+		) {
+			const invalidBookingError = new APIError(
+				"Booking timeframe is invalid due to another accepted booking",
+				400
+			);
+			throw invalidBookingError;
+		}
+	};
+
 	/**
 	 * Make a Booking
 	 * @param  {Object} req
@@ -39,6 +57,14 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 					type: "user"
 				});
 			}
+			// Validate Booking Timeframe for the date requested
+			const bookingsByDate = await bookingModel.findAll({
+				where: {date, status: "accepted"}
+			});
+			bookingsByDate.forEach(booking => {
+				validateTimeframe(timeframe, booking.dataValues.timeframe);
+			});
+			// Create New Booking
 			const booking = await bookingModel.create({
 				eventTitle,
 				eventDescription,
@@ -53,17 +79,18 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
 				include: [
 					{
 						model: userModel,
-						attributes: ["username","email"]
+						attributes: ["username", "email"],
+						as: 'admin'
 					}
 				]
 			});
 			await mailService.sendMail({
-				to: venue.user.dataValues.email,
+				to: venue.admin.dataValues.email,
 				bcc: [email],
 				from: "venue@cits.unilag.edu.ng",
 				subject: "New Venue Booking",
 				html: `
-					<p>Hello ${venue.user.dataValues.username},</p>
+					<p>Hello ${venue.admin.dataValues.username},</p>
 
 					<p>A new booking has been made for the venue: ${venue.dataValues.title}</p>
 				`
