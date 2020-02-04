@@ -21,7 +21,7 @@ const shuffle = string => {
  * @param  {Number} noOfCharacters - No of Characters for the Random string
  * @returns {String} Randomstring
  */
-const randomize = noOfCharacters => {
+export const randomize = noOfCharacters => {
   const letters = 'abcdefghijklmnopqrstuvwxyz1234567890';
   const number = noOfCharacters || 8;
   const characters = shuffle(letters);
@@ -30,4 +30,19 @@ const randomize = noOfCharacters => {
   return random;
 };
 
-export default randomize;
+export const convertTime = (timeString) => {
+  const time = timeString.slice(0, -2);
+  const meridiem = timeString.slice(-2);
+  let result = Number(time);
+  if(meridiem === 'pm') {
+      result += 12;
+  }
+  return result;
+}
+
+export class APIError extends Error {
+  constructor(message, statusCode){
+    super(message);
+    this.statusCode = statusCode;
+  }
+}
