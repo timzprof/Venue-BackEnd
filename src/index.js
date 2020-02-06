@@ -195,12 +195,12 @@ app.use((error, req, res, next) => {
     status: 'error',
     message: 'Something went wrong',
     errorMessage: error.message,
+    errors: error.errors || error.response || []
   };
   if (
     process.env.NODE_ENV === 'development'
   ) {
     responseObj.errorStack = error.stack;
-    responseObj.errors = error.errors || error.response || [];
   }
   const now = new Date();
   debugLogger(
