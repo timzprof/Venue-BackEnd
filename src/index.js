@@ -195,7 +195,7 @@ app.use((error, req, res, next) => {
     status: 'error',
     message: 'Something went wrong',
     errorMessage: error.message,
-    errors: error.errors || error.response || [];
+    errors: error.errors || error.response || []
   };
   if (
     process.env.NODE_ENV === 'development'
