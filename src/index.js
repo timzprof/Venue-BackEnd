@@ -195,11 +195,9 @@ app.use((error, req, res, next) => {
     status: 'error',
     message: 'Something went wrong',
     errorMessage: error.message,
-    errors: error.errors || error.response || []
+    errors: error.errors || error.response || [],
   };
-  if (
-    process.env.NODE_ENV === 'development'
-  ) {
+  if (process.env.NODE_ENV === 'development') {
     responseObj.errorStack = error.stack;
   }
   const now = new Date();
@@ -233,5 +231,5 @@ module.exports = {
   venueModel,
   resourceModel,
   bcrypt,
-  jwt
+  jwt,
 };
