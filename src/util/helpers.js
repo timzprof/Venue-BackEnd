@@ -30,18 +30,18 @@ export const randomize = noOfCharacters => {
   return random;
 };
 
-export const convertTime = (timeString) => {
+export const convertTime = timeString => {
   const time = timeString.slice(0, -2);
   const meridiem = timeString.slice(-2);
   let result = Number(time);
-  if(meridiem === 'pm') {
-      result += 12;
+  if (meridiem === 'pm') {
+    result += 12;
   }
   return result;
-}
+};
 
 export class APIError extends Error {
-  constructor(message, statusCode){
+  constructor(message, statusCode) {
     super(message);
     this.statusCode = statusCode;
   }
