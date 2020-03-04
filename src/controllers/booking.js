@@ -101,7 +101,6 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
         data: booking,
       });
     } catch (error) {
-      if (!error.statusCode) error.statusCode = 500;
       return next(error);
     }
   };
@@ -136,7 +135,6 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
         data: bookings,
       });
     } catch (error) {
-      if (!error.statusCode) error.statusCode = 500;
       return next(error);
     }
   };
@@ -182,7 +180,6 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
         data: booking,
       });
     } catch (error) {
-      if (!error.statusCode) error.statusCode = 500;
       return next(error);
     }
   };
@@ -228,7 +225,6 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
         data: booking,
       });
     } catch (error) {
-      if (!error.statusCode) error.statusCode = 500;
       return next(error);
     }
   };
@@ -258,7 +254,6 @@ export default ({bcrypt, userModel, bookingModel, venueModel}) => {
         data: booking,
       });
     } catch (error) {
-      if (!error.statusCode) error.statusCode = 500;
       return next(error);
     }
   };

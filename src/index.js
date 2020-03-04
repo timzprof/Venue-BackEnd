@@ -208,7 +208,7 @@ app.use((error, req, res, next) => {
       Stack: \n 
       ${error.stack}\n\n`
   );
-  return res.status(error.statusCode).json(responseObj);
+  return res.status(error.statusCode || 500).json(responseObj);
 });
 
 // Connect to Database

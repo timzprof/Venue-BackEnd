@@ -41,9 +41,8 @@ export default ({jwt, userModel, bcrypt}) => {
         token,
         user: safeUser,
       });
-    } catch (err) {
-      if (!err.statusCode) err.statusCode = 500;
-      return next(err);
+    } catch (error) {
+      return next(error);
     }
   };
   return {login};
