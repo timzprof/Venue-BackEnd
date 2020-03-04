@@ -26,7 +26,6 @@ export default ({venueModel, resourceModel}) => {
         data: venues,
       });
     } catch (error) {
-      if (!error.statusCode) error.statusCode = 500;
       return next(error);
     }
   };
@@ -99,7 +98,6 @@ export default ({venueModel, resourceModel}) => {
         data: venueObj,
       });
     } catch (error) {
-      if (!error.statusCode) error.statusCode = 500;
       return next(error);
     }
   };
@@ -143,7 +141,6 @@ export default ({venueModel, resourceModel}) => {
         data: venue.dataValues.id,
       });
     } catch (error) {
-      if (!error.statusCode) error.statusCode = 500;
       return next(error);
     }
   };
@@ -227,7 +224,6 @@ export default ({venueModel, resourceModel}) => {
         data: venueObj,
       });
     } catch (error) {
-      if (!error.statusCode) error.statusCode = 500;
       return next(error);
     }
   };
@@ -262,7 +258,6 @@ export default ({venueModel, resourceModel}) => {
         data: venueObj,
       });
     } catch (error) {
-      if (!error.statusCode) error.statusCode = 500;
       return next(error);
     }
   };
